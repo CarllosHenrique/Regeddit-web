@@ -29,11 +29,10 @@ group :development, :test do
   gem "rspec-rails", "~> 8.0.0"
   gem "factory_bot_rails"
   gem "faker"
-  gem 'simplecov', require: false, group: :test
+  gem "simplecov", require: false, group: :test
 end
 
 group :development do
   gem "web-console"
   gem "annotate"
 end
-
