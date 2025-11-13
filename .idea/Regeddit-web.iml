@@ -43,6 +43,7 @@
     <orderEntry type="library" scope="PROVIDED" name="annotate (v2.6.5, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ast (v2.4.3, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="base64 (v0.3.0, asdf: 3.4.7) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bcrypt (v3.1.20, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bcrypt_pbkdf (v1.1.1, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bigdecimal (v3.3.1, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bindex (v0.8.1, asdf: 3.4.7) [gem]" level="application" />
@@ -56,6 +57,7 @@
     <orderEntry type="library" scope="PROVIDED" name="crass (v1.0.6, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="date (v3.5.0, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="debug (v1.11.0, asdf: 3.4.7) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="devise (v4.9.4, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.6.2, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="dotenv (v3.1.8, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="drb (v2.2.3, asdf: 3.4.7) [gem]" level="application" />
@@ -65,6 +67,8 @@
     <orderEntry type="library" scope="PROVIDED" name="erubis (v2.7.0, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="et-orbi (v1.4.0, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="factory_bot (v6.5.6, asdf: 3.4.7) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="factory_bot_rails (v6.5.1, asdf: 3.4.7) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="faker (v3.5.2, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ffi (v1.17.2, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="fugit (v1.12.1, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="globalid (v1.3.0, asdf: 3.4.7) [gem]" level="application" />
@@ -98,6 +102,7 @@
     <orderEntry type="library" scope="PROVIDED" name="net-ssh (v7.3.0, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nio4r (v2.7.5, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.18.10, asdf: 3.4.7) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="orm_adapter (v0.5.0, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ostruct (v0.6.3, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="parallel (v1.27.0, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="parser (v3.3.10.0, asdf: 3.4.7) [gem]" level="application" />
@@ -122,6 +127,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rdoc (v6.15.1, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="regexp_parser (v2.11.3, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="reline (v0.6.3, asdf: 3.4.7) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="responders (v3.2.0, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec-core (v3.13.6, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec-expectations (v3.13.5, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec-mocks (v3.13.7, asdf: 3.4.7) [gem]" level="application" />
@@ -156,6 +162,7 @@
     <orderEntry type="library" scope="PROVIDED" name="unicode-emoji (v4.1.0, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="uri (v1.1.1, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="useragent (v0.16.11, asdf: 3.4.7) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="warden (v1.2.9, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="web-console (v4.2.1, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="websocket-driver (v0.8.0, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="websocket-extensions (v0.1.5, asdf: 3.4.7) [gem]" level="application" />

@@ -18,17 +18,22 @@ gem "thruster", require: false
 gem "image_processing", "~> 1.2"
 gem "haml-rails"
 gem "html2haml"
+gem "devise", "~> 4.9"
+
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
   gem "bundler-audit", require: false
   gem "brakeman", require: false
   gem "rubocop-rails-omakase", require: false
+  gem "rspec-rails", "~> 8.0.0"
+  gem "factory_bot_rails"
+  gem "faker"
+  gem 'simplecov', require: false, group: :test
 end
 
 group :development do
   gem "web-console"
   gem "annotate"
-  gem "rspec-rails", "~> 8.0.0"
-  gem "factory_bot", "~> 6.5"
 end
+
