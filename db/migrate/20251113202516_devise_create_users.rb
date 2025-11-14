@@ -7,9 +7,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[8.1]
       t.string :encrypted_password, null: false, default: ""
       t.string :name,               null: false, default: ""
       t.string :username,           null: false, default: ""
-      t.datetime :birthdate,        null: false
-      t.string :phone,              null: false, default: ""
-      t.text :bio,                  null: false, default: "Hi there! I am using this app."
+      t.datetime :birthdate,        default: nil
+      t.string :phone,              default: ""
+      t.text :bio,                  default: "Hi there! I am using this app."
 
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
