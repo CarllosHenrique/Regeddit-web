@@ -19,6 +19,7 @@ gem "image_processing", "~> 1.2"
 gem "haml-rails"
 gem "html2haml"
 gem "devise", "~> 4.9"
+gem "tailwindcss-rails"
 
 
 group :development, :test do

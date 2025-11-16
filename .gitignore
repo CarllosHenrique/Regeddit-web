@@ -6,6 +6,7 @@
 
 # Ignore bundler config.
 /.bundle
+/vendor/bundle
 
 # Ignore all environment files.
 /.env
@@ -37,3 +38,5 @@
 ./coverage
 /coverage/
 /coverage/*
+/app/assets/builds/*
+!/app/assets/builds/.keep
