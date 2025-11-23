@@ -20,6 +20,7 @@ gem "haml-rails"
 gem "html2haml"
 gem "devise", "~> 4.9"
 gem "tailwindcss-rails"
+gem "foreman"
 
 
 group :development, :test do

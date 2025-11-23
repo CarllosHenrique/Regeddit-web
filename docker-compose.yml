@@ -14,10 +14,9 @@ services:
     depends_on:
       - redis
     volumes:
-      - .:/rails                    # Código local (hot reload)
-      - gem_cache:/usr/local/bundle # Gems instaladas
+      - .:/rails
+      - gem_cache:/usr/local/bundle
       - node_modules:/rails/node_modules
-      - sqlite_data:/rails/db       # Persistência do SQLite
     command: >
       bash -c "
         rm -f tmp/pids/server.pid &&
@@ -35,4 +34,3 @@ volumes:
   redis_data:
   gem_cache:
   node_modules:
-  sqlite_data:

@@ -7,6 +7,30 @@ Este projeto está configurado para rodar com Docker e Foreman.
 - Docker
 - Docker Compose
 
+## Configuração Inicial
+
+### Master Key
+
+O projeto requer o arquivo `config/master.key` para descriptografar credenciais. Este arquivo:
+- **NÃO** deve ser commitado no Git
+- Deve ser compartilhado com segurança entre membros da equipe
+- É usado para descriptografar `config/credentials.yml.enc`
+
+Se você não tem o `config/master.key`, peça ao líder do projeto ou gere um novo com:
+
+```bash
+bin/rails credentials:edit
+```
+
+### Tailwind CSS
+
+O projeto usa Tailwind CSS que precisa ser compilado. O build é feito automaticamente quando você:
+- Roda `bin/dev` (via Procfile.dev que inclui o processo `css`)
+- Roda `bin/setup` (inclui `bin/rails tailwindcss:build`)
+- Roda `docker-compose up` (o comando executa `bundle install && bin/dev`)
+
+Os arquivos CSS compilados ficam em `app/assets/builds/` e são ignorados pelo Git.
+
 ## Estrutura de Desenvolvimento
 
 O projeto usa **Foreman** para gerenciar processos em desenvolvimento:
@@ -99,6 +123,56 @@ bin/dev
 
 - **gem_cache**: Persiste gems instaladas
 - **node_modules**: Persiste dependências Node.js (se houver)
+- **sqlite_data**: Persiste o banco de dados SQLite
+- **redis_data**: Persiste dados do Redis
+
+## Troubleshooting
+
+### Erro: "The asset 'tailwind.css' was not found"
+
+O Tailwind CSS precisa ser compilado antes de usar. Isso acontece automaticamente quando você roda `bin/dev`, mas se encontrar este erro:
+
+```bash
+# Localmente
+bin/rails tailwindcss:build
+
+# No Docker
+docker-compose exec web bin/rails tailwindcss:build
+```
+
+### Erro: "uninitialized constant Annotate"
+
+Este erro pode ocorrer se as gems de desenvolvimento não foram instaladas. O projeto já está configurado para lidar com isso gracefully, mas se persistir:
+
+```bash
+# Reconstrua o container
+docker-compose down
+docker-compose up --build
+```
+
+### Erro: "key must be 16 bytes"
+
+Problema com o `config/master.key`. Verifique se:
+1. O arquivo `config/master.key` existe
+2. O arquivo tem exatamente 32 caracteres hexadecimais
+3. Não há espaços ou quebras de linha extras
+
+Se necessário, regenere as credenciais:
+
+```bash
+rm config/credentials.yml.enc config/master.key
+bin/rails credentials:edit
+```
+
+**Importante:** Guarde o novo `master.key` em um local seguro e compartilhe com a equipe!
+
+### Container não inicia
+
+```bash
+# Limpe todos os volumes e reconstrua
+docker-compose down -v
+docker-compose up --build
+```
 - **sqlite_data**: Persiste banco de dados SQLite
 - **redis_data**: Persiste dados do Redis
 
