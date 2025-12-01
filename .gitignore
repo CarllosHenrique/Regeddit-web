@@ -9,7 +9,7 @@
 /vendor/bundle
 
 # Ignore all environment files.
-/.env
+/.env.development
 
 # Ignore all logfiles and tempfiles.
 /log/*
