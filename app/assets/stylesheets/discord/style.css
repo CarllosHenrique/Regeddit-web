@@ -262,3 +262,21 @@ body {
     color: var(--green);
     margin: 0;
 }
+
+.container {
+    grid-column-start: 4;
+    grid-column-end: 5;
+    background-color: var(--dark-bg);
+    flex: 1;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.members {
+    grid-column-start: 5;
+    grid-column-end: 6;
+    background-color: var(--dark-primary);
+    width: 240px;
+    height: 100vh;
+    overflow-y: auto;
+}
