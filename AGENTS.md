@@ -49,6 +49,82 @@ bin/rspec                      # Run tests
 - Use AI for boilerplate and tests
 - Validate with automated tools
 
+## ViewComponent Structure
+
+**Component Organization:**
+- Each component MUST have its own directory under `app/components/`
+- Use descriptive names based on functionality (e.g., `layout`, `sidebar`, `server_list`)
+- AVOID generic or feature-specific namespaces (e.g., `discord`, `app_name`)
+
+**File Naming Convention:**
+```
+app/components/
+├── component_name/
+│   ├── component.rb           # Main component class
+│   └── component.html.haml    # Template
+```
+
+**Class Structure:**
+```ruby
+# app/components/component_name/component.rb
+module ComponentName
+  class Component < ViewComponent::Base
+    def initialize(params)
+      @params = params
+    end
+
+    private
+
+    attr_reader :params
+  end
+end
+```
+
+**Usage:**
+```haml
+= render ComponentName::Component.new(params: value)
+```
+
+**Best Practices:**
+- Components should be organized by UI function (layout, sidebar, navbar, etc.)
+- Use module namespacing matching the directory name
+- Keep components focused and single-purpose
+- Prefer composition over inheritance
+
+**Real Example:**
+```ruby
+# app/components/sidebar/component.rb
+module Sidebar
+  class Component < ViewComponent::Base
+    def initialize(server_name:, username:, discriminator:, avatar_url: nil)
+      @server_name = server_name
+      @username = username
+      @discriminator = discriminator
+      @avatar_url = avatar_url || "https://example.com/default.png"
+    end
+
+    private
+
+    attr_reader :server_name, :username, :discriminator, :avatar_url
+  end
+end
+```
+
+```haml
+-# app/components/sidebar/component.html.haml
+.side-bar
+  .nav
+    %h4.guildSelectorName= server_name
+  .userBox
+    %img.userAvatar{alt: "avatar", src: avatar_url}/
+    %h4.username= username
+```
+
+```haml
+-# app/views/home/index.html.haml
+= render Sidebar::Component.new(server_name: "My Server", username: "User", discriminator: "#1234")
+```
+
 ## Architecture
 
 ## Security

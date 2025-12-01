@@ -169,6 +169,7 @@
     <orderEntry type="library" scope="PROVIDED" name="unicode-emoji (v4.1.0, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="uri (v1.1.1, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="useragent (v0.16.11, asdf: 3.4.7) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="view_component (v4.1.1, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="warden (v1.2.9, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="web-console (v4.2.1, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="websocket-driver (v0.8.0, asdf: 3.4.7) [gem]" level="application" />

@@ -1,5 +1,3 @@
-= render Discord::LayoutComponent.new(server_name: "Server Name", username: "Username", discriminator: "#1234") do |component|
+= render Layout::Component.new(server_name: "Server Name", username: "Username", discriminator: "#1234") do |component|
   - component.with_container do
     / Main chat container content can go here
-  - component.with_members do
-    / Members list can go here

@@ -1,9 +1,0 @@
-.rootDiv
-  = render Discord::SidebarComponent.new(server_name: server_name, username: username, discriminator: discriminator, avatar_url: avatar_url)
-  = render Discord::ServerListComponent.new
-  .container
-    - if container?
-      = container
-  .members
-    - if members?
-      = members
