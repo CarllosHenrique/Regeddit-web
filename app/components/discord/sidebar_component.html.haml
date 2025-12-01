@@ -1,0 +1,16 @@
+.side-bar
+  .nav
+    .guildSettings
+      .navguild
+        .guild-opener
+          .navGuildItems
+            %h4.guildSelectorName= server_name
+  .userBox
+    %img.userAvatar{alt: "avatar", src: avatar_url}/
+    .userinfo
+      %h4.username= username
+      %h6.discriminator= discriminator
+    .usermenuicons
+      #micToggle.mic
+      #headphoneToggle.headphone
+      #settingsToggle.settings
