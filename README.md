@@ -59,7 +59,7 @@ Em um mundo onde a comunicação digital é essencial, muitas plataformas são c
 - **[Docker](https://www.docker.com/)** - Containerização
 - **[Foreman](https://github.com/ddollar/foreman)** - Gerenciamento de processos
 - **[Kamal](https://kamal-deploy.org/)** - Deploy automatizado
-- **[GoodJob](https://github.com/bensheldon/good_job)** - Background jobs (via Solid Queue)
+- **[Solid Queue](https://github.com/rails/solid_queue)** - Background jobs
 
 ### Qualidade & Testes
 - **[RSpec](https://rspec.info/)** - Framework de testes
