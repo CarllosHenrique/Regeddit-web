@@ -1,339 +1,75 @@
-.flex.w-screen.h-screen.text-gray-700
-  .flex.flex-col.items-center.flex-shrink-0.w-16.border-r.border-gray-300.bg-gray-200.py-3
+%nav.w-full.border-b.h-14.flex.items-center.justify-between.px-6.fixed.top-0.z-50{class: "bg-[#1A1A1B] border-none"}
+  .flex.items-center.gap-3.text-white.font-bold.text-xl Regeddit?
+  .flex.items-center.gap-4.text-gray-300.text-sm
+    %a.hover:text-white{href: "#"} Threads
+    %a.hover:text-white{href: "#"} Popular
+    %a.hover:text-white{href: "#"} Vídeos
+    %a.hover:text-white{href: "#"} Usuarios
+  %button.bg-blue-500.hover:bg-blue-600.text-white.px-4.rounded-full.text-sm{class: "py-1.5"} Log In
+
+%aside.fixed.left-0.h-screen.text-gray-700.z-40{class: "top-14"}
+  .flex.flex-col.items-center.flex-shrink-0.w-16.h-full.py-3{class: "bg-[#1A1A1B] border-[#2A2A2A]"}
     %a.w-10.h-10.rounded-lg.bg-gray-400.hover:bg-gray-500{href: "#"}
     %a.w-10.h-10.rounded-lg.bg-gray-400.mt-4.shadow-outline.border-4.border-gray-200{href: "#"}
     %a.relative.w-10.h-10.rounded-lg.bg-gray-400.mt-4.hover:bg-gray-500{href: "#"}
       %span.absolute.w-3.h-3.rounded-full.bg-blue-400.top-0.right-0.-mt-1.-mr-1
     %a.w-10.h-10.rounded-lg.bg-gray-400.mt-4.hover:bg-gray-500{href: "#"}
     %a.flex.items-center.justify-center.w-10.h-10.rounded-lg.bg-transparent.mt-4.hover:bg-gray-400{href: "#"}
-      %i.fas.fa-plus.text-xl
-  .flex.flex-col.flex-shrink-0.w-64.border-r.border-gray-300.bg-gray-100
-    %button.flex-shrink-0.relative.text-sm.focus:outline-none.group
-      .flex.items-center.justify-between.w-full.h-16.px-4.border-b.border-gray-300.hover:bg-gray-300
-        %span.font-medium
-          Dropdown
-        %i.fas.fa-chevron-down
-      .absolute.z-10.flex-col.items-start.hidden.w-full.pb-1.bg-white.shadow-lg.group-focus:flex
-        %a.w-full.px-4.py-2.text-left.hover:bg-gray-300{href: "#"} Menu Item 1
-        %a.w-full.px-4.py-2.text-left.hover:bg-gray-300{href: "#"} Menu Item 1
-        %a.w-full.px-4.py-2.text-left.hover:bg-gray-300{href: "#"} Menu Item 1
-    .h-0.overflow-auto.flex-grow
+      %svg.w-6.h-6.fill-current{fill: "none", stroke: "currentColor", viewbox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg"}
+        %path{d: "M12 6v6m0 0v6m0-6h6m-6 0H6", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2"}
+
+%main.flex{class: "bg-[#0F0F0F] text-white pt-14 pl-16", style: "place-content: center;"}
+  %aside.hidden.lg:flex.flex-col.w-64.border-r.h-screen.sticky.top-0.p-4.text-sm{class: "bg-[#0F0F0F] border-[#1A1A1B]"}
+    %nav.space-y-1
+      %a.flex.items-center.gap-3.p-2.rounded{class: "hover:bg-[#1A1A1B]", href: "#"} 🏠 Threads
+      %a.flex.items-center.gap-3.p-2.rounded{class: "hover:bg-[#1A1A1B]", href: "#"} 🔥 Salvos
+      %a.flex.items-center.gap-3.p-2.rounded{class: "hover:bg-[#1A1A1B]", href: "#"} 💬 Mensagens
+      %a.flex.items-center.gap-3.p-2.rounded{class: "hover:bg-[#1A1A1B]", href: "#"} 🔍 Seguidores
+    .mt-6.border-t.pt-4.text-xs.text-gray-400{class: "border-[#1A1A1B]"}
+      %p.mb-2.font-semibold.text-gray-300 RESOURCES
+      %ul.space-y-2
+        %li About Regeddit
+        %li Advertise
+        %li Developer Platform
+        %li Regeddit Pro
+        %li Help
+  %div.flex-1.max-w-3xl.mx-auto.p-4.space-y-6{style: "margin: 0px;"}
+    %header.sticky.top-0.py-3.z-20{class: "bg-[#0F0F0F]"}
+      %input.w-full.rounded-full.px-4.py-2.text-sm.outline-none{class: "bg-[#1A1A1B]", placeholder: "Search Regeddit", type: "search"}/
+    %article.rounded-xl.overflow-hidden.border{class: "bg-[#1A1A1B] border-[#2A2A2A]"}
+      %header.flex.items-center.gap-2.px-4.pt-3.text-xs.text-gray-400
+        %span.font-semibold.text-white r/MeJulgue
+        %span • 4 days ago • Popular near you
+      %h2.px-4.mt-2.font-semibold.text-white.text-lg Sempre tive curiosidade em saber, qual foi a primeira coisa que veio na sua cabeça?
       .mt-3
-        %a.flex.items-center.h-8.hover:bg-gray-300.text-sm.px-3{href: "#"}
-          %i.fas.fa-comment.text-base
-          %span.ml-2.leading-none Threads
-        %a.flex.items-center.h-8.hover:bg-gray-300.text-sm.px-3{href: "#"}
-          %i.fas.fa-comments.text-base
-          %span.ml-2.leading-none.font-bold All DMs
-        %a.flex.items-center.h-8.hover:bg-gray-300.text-sm.px-3{href: "#"}
-          %span.leading-none.w-4 @
-          %span.ml-2.leading-none Mentions &amp; Reactions
-        %a.flex.items-center.h-8.hover:bg-gray-300.text-sm.px-3{href: "#"}
-          %i.fas.fa-bookmark.text-base
-          %span.ml-2.leading-none Saved Items
-        %a.flex.items-center.h-8.hover:bg-gray-300.text-sm.px-3{href: "#"}
-          %i.fas.fa-ellipsis-v.text-base
-          %span.ml-2.leading-none More
-      .mt-4
-        .flex.items-center.h-8.px-3.group
-          %button#channels_toggle.flex.items-center.flex-grow.focus:outline-none
-            %i.fas.fa-chevron-down
-            %span.ml-2.leading-none.font-medium.text-sm Channels
-          %button.items-center.justify-center.h-6.w-6.ml-auto.rounded.hidden.group-hover:flex.hover:bg-gray-300
-            %i.fas.fa-ellipsis-v.text-sm
-          %button.flex.items-center.justify-center.h-6.w-6.ml-1.rounded.hover:bg-gray-300
-            %i.fas.fa-plus
-        #channels_list
-          %a.flex.items-center.h-8.bg-gray-300.text-sm.pl-8.pr-3{href: "#"}
-            %i.fas.fa-hashtag.text-sm
-            %span.ml-2.leading-none.font-bold council-of-elrond
-          %a.flex.items-center.h-8.hover:bg-gray-300.text-sm.pl-8.pr-3{href: "#"}
-            %i.fas.fa-hashtag.text-sm
-            %span.ml-2.leading-none the-fellowship
-          %a.flex.items-center.h-8.hover:bg-gray-300.text-sm.pl-8.pr-3{href: "#"}
-            %i.fas.fa-hashtag.text-sm
-            %span.ml-2.leading-none and-another
-          %a.flex.items-center.h-8.hover:bg-gray-300.text-sm.pl-8.pr-3{href: "#"}
-            %i.fas.fa-lock.text-sm
-            %span.ml-2.leading-none.font-bold second-breakfast-fans
-          %a.flex.items-center.h-8.hover:bg-gray-300.text-sm.pl-8.pr-3{href: "#"}
-            %i.fas.fa-lock.text-sm
-            %span.ml-2.leading-none anduril-smithy-club
-      .mt-4
-        .flex.items-center.h-8.px-3.group
-          %button#messages_toggle.flex.items-center.flex-grow.focus:outline-none
-            %i.fas.fa-chevron-down
-            %span.ml-2.leading-none.font-medium.text-sm Direct Messages
-          %button.items-center.justify-center.h-6.w-6.ml-auto.rounded.hidden.group-hover:flex.hover:bg-gray-300
-            %i.fas.fa-ellipsis-v.text-sm
-          %button.flex.items-center.justify-center.h-6.w-6.ml-1.rounded.hover:bg-gray-300
-            %i.fas.fa-plus
-        #messages_list
-          %a.flex.items-center.h-8.hover:bg-gray-300.text-sm.pl-8.pr-3{href: "#"}
-            .flex.justify-center.w-4
-              %span.w-2.h-2.rounded-full.bg-blue-500
-            %span.ml-2.leading-none.font-bold Frodo Baggins
-            %span.flex.items-center.justify-center.bg-blue-500.rounded-full.font-medium.h-5.px-2.ml-auto.text-xs.text-white 3
-          %a.flex.items-center.h-8.hover:bg-gray-300.text-sm.pl-8.pr-3{href: "#"}
-            .flex.justify-center.w-4
-              %span.w-2.h-2.rounded-full.bg-blue-500
-            %span.ml-2.leading-none Gandalf The Grey
-          %a.flex.items-center.h-8.hover:bg-gray-300.text-sm.pl-8.pr-3{href: "#"}
-            .flex.justify-center.w-4
-              %span.w-2.h-2.rounded-full.border-2.border-gray-500
-            %span.ml-2.leading-none.text-gray-500 Gimli son of Gloin
-          %a.flex.items-center.h-8.hover:bg-gray-300.text-sm.pl-8.pr-3{href: "#"}
-            .flex.justify-center.items-center.rounded.bg-gray-600.w-4.h-4
-              %span.text-xs.text-white 2
-            %span.ml-2.leading-none.font-bold Pippin, Merry
-            %span.flex.items-center.justify-center.bg-blue-500.rounded-full.font-medium.h-5.px-2.ml-auto.text-xs.text-white 1
-          %a.flex.items-center.h-8.hover:bg-gray-300.text-sm.pl-8.pr-3{href: "#"}
-            .flex.justify-center.items-center.rounded.bg-gray-600.w-4.h-4
-              %span.text-xs.text-white 3
-            %span.ml-2.leading-none Galadriel, Elrond, Arwen
-  .flex.flex-col.flex-grow
-    .flex.items-center.flex-shrink-0.h-16.bg-white.border-b.border-gray-300.px-4
-      %div
-        %h1.text-sm.font-bold.leading-none #council-of-elrond
-        %span.text-xs.leading-none Let's sort this ring thing out hey!?!
-    .flex.flex-col.flex-grow.overflow-auto
-      .flex.px-4.py-3
-        .h-10.w-10.rounded.flex-shrink-0.bg-gray-300
-        .ml-2
-          .-mt-1
-            %span.text-sm.font-semibold Sam
-            %span.ml-1.text-xs.text-gray-500 01:26
-          %p.text-sm Anyone know if Frodo is awake yet?
-          .flex.space-x-2.mt-1
-            %button.flex.items-center.pl-1.pr-2.h-5.bg-gray-300.hover:bg-gray-400.rounded-full.text-xs
-              %span 🤷
-              %span.ml-1.font-medium 2
-      .flex.flex-col.items-center.mt-2
-        %hr.w-full/
-        %span.flex.items-center.justify-center.-mt-3.bg-white.h-6.px-3.rounded-full.border.text-xs.font-semibold.mx-auto Today
-      .flex.px-4.py-3
-        .h-10.w-10.rounded.flex-shrink-0.bg-gray-300
-        .ml-2
-          .-mt-1
-            %span.text-sm.font-semibold Elrond
-            %span.ml-1.text-xs.text-gray-500 01:26
-          %p.text-sm Strangers from distant lands, friends of old. You have been summoned here to answer the threat of Mordor. Middle-Earth stands upon the brink of destruction. None can escape it. You will unite or you will fall. Each race is bound to this fate–this one doom. (gestures to the pedestal) Bring forth the Ring, Frodo.
-          .flex.space-x-2.mt-1
-            %button.flex.items-center.pl-1.pr-2.h-5.bg-gray-300.hover:bg-gray-400.rounded-full.text-xs
-              %span ❤️
-              %span.ml-1.font-medium 5
-      .flex.px-4.py-3
-        .h-10.w-10.rounded.flex-shrink-0.bg-gray-300
-        .ml-2
-          .-mt-1
-            %span.text-sm.font-semibold Boromir
-            %span.ml-1.text-xs.text-gray-500 01:26
-          %p.text-sm So it is true…
-          %p.text-sm It is a gift. A gift to the foes of Mordor. Why not use this Ring? (paces) Long has my father, the Steward of Gondor, kept the forces of Mordor at bay. By the blood of our people are your lands kept safe! Give Gondor the weapon of the Enemy. Let us use it against him!
-          .flex.space-x-2.mt-1
-            %button.flex.items-center.pl-1.pr-2.h-5.bg-gray-300.hover:bg-gray-400.rounded-full.text-xs
-              %span 👎
-              %span.ml-1.font-medium 1
-            %button.flex.items-center.pl-1.pr-2.h-5.bg-gray-300.hover:bg-gray-400.rounded-full.text-xs
-              %span 🤔
-              %span.ml-1.font-medium 3
-          .flex.items-center.mt-2
-            .h-6.w-6.rounded.flex-shrink-0.bg-gray-300
-            .h-6.w-6.rounded.flex-shrink-0.bg-gray-300.ml-1
-            %a.text-blue-600.text-xs.font-medium.ml-1{href: "#"} 4 replies
-            %span.text-xs.text-gray-600.ml-1 Last reply today at 03:45
-      .flex.px-4.py-3
-        .h-10.w-10.rounded.flex-shrink-0.bg-gray-300
-        .ml-2
-          .-mt-1
-            %span.text-sm.font-semibold Aragorn
-            %span.ml-1.text-xs.text-gray-500 01:26
-          %p.text-sm You cannot wield it! None of us can. The One Ring answers to Sauron alone. It has no other master.
-      .flex.px-4.py-3
-        .h-10.w-10.rounded.flex-shrink-0.bg-gray-300
-        .ml-2
-          .-mt-1
-            %span.text-sm.font-semibold Boromir
-            %span.ml-1.text-xs.text-gray-500 01:26
-          %p.text-sm And what would a ranger know of this matter?
-          .flex.space-x-2.mt-1
-            %button.flex.items-center.pl-1.pr-2.h-5.bg-gray-300.hover:bg-gray-400.rounded-full.text-xs
-              %span 😲
-              %span.ml-1.font-medium 2
-          .flex.items-center.mt-2
-            .h-6.w-6.rounded.flex-shrink-0.bg-gray-300
-            .h-6.w-6.rounded.flex-shrink-0.bg-gray-300.ml-1
-            %a.text-blue-600.text-xs.font-medium.ml-1{href: "#"} 4 replies
-            %span.text-xs.text-gray-600.ml-1 Last reply today at 03:45
-      .flex.px-4.py-3
-        .h-10.w-10.rounded.flex-shrink-0.bg-gray-300
-        .ml-2
-          .-mt-1
-            %span.text-sm.font-semibold Legolas
-            %span.ml-1.text-xs.text-gray-500 01:26
-          %p.text-sm This is no mere ranger. He is Aragorn, son of Arathorn. You owe him your allegiance.
-      .flex.px-4.py-3
-        .h-10.w-10.rounded.flex-shrink-0.bg-gray-300
-        .ml-2
-          .-mt-1
-            %span.text-sm.font-semibold Boromim
-            %span.ml-1.text-xs.text-gray-500 01:26
-          %p.text-sm Aragorn? This… is Isildur’s heir?
-          .flex.items-center.mt-2
-            .h-6.w-6.rounded.flex-shrink-0.bg-gray-300
-            .h-6.w-6.rounded.flex-shrink-0.bg-gray-300.ml-1
-            .h-6.w-6.rounded.flex-shrink-0.bg-gray-300.ml-1
-            %a.text-blue-600.text-xs.font-medium.ml-1{href: "#"} 3 replies
-            %span.text-xs.text-gray-600.ml-1 Last reply today at 03:45
-      .flex.px-4.py-3
-        .h-10.w-10.rounded.flex-shrink-0.bg-gray-300
-        .ml-2
-          .-mt-1
-            %span.text-sm.font-semibold Boromir
-            %span.ml-1.text-xs.text-gray-500 01:26
-          %p.text-sm Gondor has no king. Gondor needs no king.
-          .flex.items-center.mt-2
-            .h-6.w-6.rounded.flex-shrink-0.bg-gray-300
-            .h-6.w-6.rounded.flex-shrink-0.bg-gray-300.ml-1
-            %a.text-blue-600.text-xs.font-medium.ml-1{href: "#"} 4 replies
-            %span.text-xs.text-gray-600.ml-1 Last reply today at 03:45
-      .flex.px-4.py-3
-        .h-10.w-10.rounded.flex-shrink-0.bg-gray-300
-        .ml-2
-          .-mt-1
-            %span.text-sm.font-semibold Gandalf
-            %span.ml-1.text-xs.text-gray-500 01:26
-          %p.text-sm Aragorn is right. We cannot use it.
-          .flex.space-x-2.mt-1
-            %button.flex.items-center.pl-1.pr-2.h-5.bg-gray-300.hover:bg-gray-400.rounded-full.text-xs
-              %span 👍
-              %span.ml-1.font-medium 6
-            %button.flex.items-center.pl-1.pr-2.h-5.bg-gray-300.hover:bg-gray-400.rounded-full.text-xs
-              %span 🧙‍
-              %span.ml-1.font-medium 3
-      .flex.px-4.py-3
-        .h-10.w-10.rounded.flex-shrink-0.bg-gray-300
-        .ml-2
-          .-mt-1
-            %span.text-sm.font-semibold Elrond
-            %span.ml-1.text-xs.text-gray-500 01:26
-          %p.text-sm You have only one choice. The Ring must be destroyed.
-          .flex.space-x-2.mt-1
-            %button.flex.items-center.pl-1.pr-2.h-5.bg-gray-300.hover:bg-gray-400.rounded-full.text-xs
-              %span 💍
-              %span.ml-1.font-medium 1
-      .flex.px-4.py-3
-        .h-10.w-10.rounded.flex-shrink-0.bg-gray-300
-        .ml-2
-          .-mt-1
-            %span.text-sm.font-semibold Gimli
-            %span.ml-1.text-xs.text-gray-500 01:26
-          %p.text-sm What are we waiting for?
-      .flex.px-4.py-3
-        .h-10.w-10.rounded.flex-shrink-0.bg-gray-300
-        .ml-2
-          .-mt-1
-            %span.text-sm.font-semibold Elrond
-            %span.ml-1.text-xs.text-gray-500 01:26
-          %p.text-sm The Ring cannot be destroyed, Gimli, son of Gloin by any craft that we here possess. The Ring was made in the fires of Mount Doom. Only there can it be unmade. It must be taken deep into Mordor and cast back into the fiery chasm from whence it came.
-          %p.text-sm One of you must do this.
-          .flex.space-x-2.mt-1
-            %button.flex.items-center.pl-1.pr-2.h-5.bg-gray-300.hover:bg-gray-400.rounded-full.text-xs
-              %span 🗻
-              %span.ml-1.font-medium 2
-            %button.flex.items-center.pl-1.pr-2.h-5.bg-gray-300.hover:bg-gray-400.rounded-full.text-xs
-              %span 🔥
-              %span.ml-1.font-medium 3
-      .flex.px-4.py-3
-        .h-10.w-10.rounded.flex-shrink-0.bg-gray-300
-        .ml-2
-          .-mt-1
-            %span.text-sm.font-semibold Boromir
-            %span.ml-1.text-xs.text-gray-500 01:26
-          %p.text-sm One does not simply walk into Mordor. Its black gates are guarded by more than just orcs. There is evil there that does not sleep. And the great Eye is ever watchful. It is a barren wasteland riddled with fire and ash and dust. The very air you breathe is a poisonous fume. Not with ten thousand men could you do this. It is folly!
-    .h-12.bg-white.px-4.pb-4
-      .flex.items-center.border-2.border-gray-300.rounded-sm.p-1
-        %button.flex-shrink.flex.items-center.justify-center.h-6.w-6.rounded.hover:bg-gray-200
-          %i.fas.fa-bolt.text-sm
-        %textarea.flex-grow.text-sm.px-3.border-l.border-gray-300.ml-1{cols: "", placeholder: "Message council-of-elrond", rows: "1", style: "resize: none;"}
-        %button.flex-shrink.flex.items-center.justify-center.h-6.w-6.rounded.hover:bg-gray-200
-          %i.fas.fa-bars.text-sm
-        %button.flex-shrink.flex.items-center.justify-center.h-6.w-6.rounded.hover:bg-gray-200
-          %span.leading-none.w-4.h-4.-mt-px @
-        %button.flex-shrink.flex.items-center.justify-center.h-6.w-6.rounded.hover:bg-gray-200
-          %i.far.fa-smile.text-sm
-        %button.flex-shrink.flex.items-center.justify-center.h-6.w-6.rounded.hover:bg-gray-200
-          %i.fas.fa-paperclip.text-sm
-        %button.flex-shrink.flex.items-center.justify-center.h-6.w-6.rounded.hover:bg-gray-200
-          %i.fas.fa-paper-plane.text-sm
-  .flex.flex-col.flex-shrink-0.max-w-xs.border-l.border-gray-300.bg-gray-100{class: "w-1/4"}
-    .flex.items-center.h-16.border-b.border-gray-300.px-4
-      %div
-        %h2.text-sm.font-semibold.leading-none Thread
-        %a.text-xs.leading-none{href: "#"} council-of-elrond
-      %button.flex.items-center.justify-center.w-6.h-6.rounded.hover:bg-gray-300.ml-auto
-        %i.fas.fa-times.text-lg
-    .flex.flex-col.flex-grow.overflow-auto
-      .flex.px-4.py-4.border-b.border-gray-300
-        .h-10.w-10.rounded.flex-shrink-0.bg-gray-300
-        .ml-2
-          .-mt-1
-            %span.text-sm.font-semibold Boromim
-            %span.ml-1.text-xs.text-gray-500 01:26
-          %p.text-sm Aragorn? This… is Isildur’s heir?
-      .flex.px-4.py-3
-        .h-10.w-10.rounded.flex-shrink-0.bg-gray-300
-        .ml-2
-          .-mt-1
-            %span.text-sm.font-semibold Legolas
-            %span.ml-1.text-xs.text-gray-500 01:26
-          %p.text-sm And heir to the throne of Gondor.
-          .flex.space-x-2.mt-1
-            %button.flex.items-center.pl-1.pr-2.h-5.bg-gray-300.hover:bg-gray-400.rounded-full.text-xs
-              %span 🤯
-              %span.ml-1.font-medium 7
-            %button.flex.items-center.pl-1.pr-2.h-5.bg-gray-300.hover:bg-gray-400.rounded-full.text-xs
-              %span 🏰
-              %span.ml-1.font-medium 2
-            %button.flex.items-center.pl-1.pr-2.h-5.bg-gray-300.hover:bg-gray-400.rounded-full.text-xs
-              %span 👑
-              %span.ml-1.font-medium 3
-      .flex.px-4.py-3
-        .h-10.w-10.rounded.flex-shrink-0.bg-gray-300
-        .ml-2
-          .-mt-1
-            %span.text-sm.font-semibold Aragorn
-            %span.ml-1.text-xs.text-gray-500 01:26
-          %p.text-sm Havo dad Legolas.
-          .flex.space-x-2.mt-1
-            %button.flex.items-center.pl-1.pr-2.h-5.bg-gray-300.hover:bg-gray-400.rounded-full.text-xs
-              %span ❓
-              %span.ml-1.font-medium 1
-      .flex.px-4.py-3
-        .h-10.w-10.rounded.flex-shrink-0.bg-gray-300
-        .ml-2
-          .-mt-1
-            %span.text-sm.font-semibold Pippin
-            %span.ml-1.text-xs.text-gray-500 01:26
-          %p.text-sm Is that elvish for second breakfast?
-          .flex.space-x-2.mt-1
-            %button.flex.items-center.pl-1.pr-2.h-5.bg-gray-300.hover:bg-gray-400.rounded-full.text-xs
-              %span 🍳
-              %span.ml-1.font-medium 3
-      .bg-gray-100.px-4.pb-3.mt-auto
-        .flex.flex-col.items-center.border-2.border-gray-300.rounded-sm.p-1
-          %textarea.w-full.text-sm.px-3.bg-transparent{cols: "", placeholder: "Reply…", rows: "1", style: "resize: none;"}
-          .flex.w-full.mt-2
-            %button.flex-shrink.flex.items-center.justify-center.h-6.w-6.rounded.hover:bg-gray-200
-              %i.fas.fa-bolt.text-sm
-            %button.flex-shrink.flex.items-center.justify-center.h-6.w-6.rounded.ml-auto.hover:bg-gray-200
-              %i.fas.fa-bars.text-sm
-            %button.flex-shrink.flex.items-center.justify-center.h-6.w-6.rounded.hover:bg-gray-200
-              %span.leading-none.w-4.h-4.-mt-px @
-            %button.flex-shrink.flex.items-center.justify-center.h-6.w-6.rounded.hover:bg-gray-200
-              %i.far.fa-smile.text-sm
-            %button.flex-shrink.flex.items-center.justify-center.h-6.w-6.rounded.hover:bg-gray-200
-              %i.fas.fa-paperclip.text-sm
-            %button.flex-shrink.flex.items-center.justify-center.h-6.w-6.rounded.hover:bg-gray-200
-              %i.fas.fa-paper-plane.text-sm
-  / Component End
+        %img.w-full{src: "https://picsum.photos/seed/example1/900/600"}/
+      %footer.flex.items-center.justify-between.px-4.py-3.text-gray-400.text-sm
+        .flex.gap-6
+          %button 👍 700
+          %button 💬 411
+          %button 🔗 Share
+        %button.text-blue-400.font-semibold Join
+    - 100.times do
+      %article.rounded-xl.overflow-hidden.border{class: "bg-[#1A1A1B] border-[#2A2A2A]"}
+        %header.flex.items-center.gap-2.px-4.pt-3.text-xs.text-gray-400
+          %span.font-semibold.text-white r/pcmasterrace
+          %span • 16 hr ago • Popular on Regeddit
+        %h2.px-4.mt-2.font-semibold.text-white.text-lg Received Rocks In Place Of Asus Tuf 5080 From BestBuy
+        .mt-3
+          %img.w-full{src: "https://picsum.photos/seed/example2/900/600"}/
+        %footer.flex.items-center.justify-between.px-4.py-3.text-gray-400.text-sm
+          .flex.gap-6
+            %button 👍 5080
+            %button 💬 283
+            %button 🔗 Share
+          %button.text-blue-400.font-semibold Join
+  %aside.hidden.xl:block.w-80.p-4.space-y-4.sticky.top-0.h-screen
+    .p-4.rounded-xl.border{class: "bg-[#1A1A1B] border-[#2A2A2A]"}
+      %h3.font-semibold.mb-3.text-white Popular Communities
+      %ul.space-y-3.text-sm.text-gray-300
+        %li #AskRegeddit • 57,230,401 members
+        %li #leagueoflegends • 8,306,687 members
+        %li #OutOfTheLoop • 3,239,948 members
+        %li #discordapp • 1,466,716 members
+        %li #Twitch • 2,846,874 members
+

@@ -155,8 +155,6 @@
     <orderEntry type="library" scope="PROVIDED" name="sshkit (v1.24.0, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="stimulus-rails (v1.3.4, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="stringio (v3.1.8, asdf: 3.4.7) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="tailwindcss-rails (v4.4.0, asdf: 3.4.7) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="tailwindcss-ruby (v4.1.16, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="temple (v0.10.4, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thor (v1.4.0, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thruster (v0.1.16, asdf: 3.4.7) [gem]" level="application" />
