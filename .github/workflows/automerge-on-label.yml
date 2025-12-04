@@ -23,7 +23,7 @@ jobs:
               return;
             }
 
-            const labels = pr.labels.map(l => l.name);
+            const labels = (pr.labels || []).map(l => l.name);
             const hasAutomerge = labels.includes('automerge') || labels.includes('automerge:main');
             if (!hasAutomerge) {
               core.info('No automerge label found, exiting.');
@@ -40,10 +40,10 @@ jobs:
             if (pr.base && pr.base.ref !== targetBranch) {
               core.info(`Changing PR base from ${pr.base.ref} to ${targetBranch}`);
               try {
-                await github.pulls.update({ owner, repo, pull_number: prNumber, base: targetBranch });
+                await github.rest.pulls.update({ owner, repo, pull_number: prNumber, base: targetBranch });
               } catch (err) {
                 core.info(`Failed to update PR base: ${err.message}`);
-                await github.issues.createComment({
+                await github.rest.issues.createComment({
                   owner,
                   repo,
                   issue_number: prNumber,
@@ -54,26 +54,26 @@ jobs:
             }
 
             // Polling: aguarda checks passarem
-            const maxMinutes = 30; // tempo máximo de espera
+            const maxMinutes = 30; // tempo máximo de espera (ajuste se quiser)
             const intervalSeconds = 15; // intervalo entre tentativas
             const maxAttempts = Math.ceil((maxMinutes * 60) / intervalSeconds);
 
             for (let attempt = 0; attempt < maxAttempts; attempt++) {
               // Re-fetch PR to get up-to-date head SHA and mergeable_state
-              const { data: currentPr } = await github.pulls.get({ owner, repo, pull_number: prNumber });
+              const { data: currentPr } = await github.rest.pulls.get({ owner, repo, pull_number: prNumber });
               const headSha = currentPr.head.sha;
               const mergeableState = currentPr.mergeable_state; // pode ser null inicialmente
 
               core.info(`Attempt ${attempt + 1}/${maxAttempts}: mergeable_state=${mergeableState}`);
 
-              // Get combined status (legacy status API) and check runs (Checks API)
-              const { data: combinedStatus } = await github.repos.getCombinedStatusForRef({ owner, repo, ref: headSha });
-              const { data: checkRunsData } = await github.checks.listForRef({ owner, repo, ref: headSha });
+              // Get combined status (legacy) and check runs (Checks API)
+              const { data: combinedStatus } = await github.rest.repos.getCombinedStatusForRef({ owner, repo, ref: headSha });
+              const { data: checkRunsData } = await github.rest.checks.listForRef({ owner, repo, ref: headSha });
 
               const combinedState = combinedStatus.state; // 'success', 'failure', 'pending', 'error'
               const checkRuns = checkRunsData.check_runs || [];
 
-              const failingCheckRun = checkRuns.find(cr => cr.conclusion === 'failure');
+              const failingCheckRun = checkRuns.find(cr => cr.conclusion === 'failure' || cr.conclusion === 'cancelled' || cr.conclusion === 'timed_out');
               const pendingCheckRun = checkRuns.find(cr => cr.status === 'in_progress' || cr.status === 'queued');
               const allChecksSuccessful = (combinedState === 'success') && !failingCheckRun;
 
@@ -82,9 +82,9 @@ jobs:
               if (allChecksSuccessful) {
                 core.info('Checks passed — attempting merge');
                 try {
-                  await github.pulls.merge({ owner, repo, pull_number: prNumber, merge_method: 'squash' });
+                  await github.rest.pulls.merge({ owner, repo, pull_number: prNumber, merge_method: 'squash' });
                   core.info(`Merged PR #${prNumber} into ${targetBranch}`);
-                  await github.issues.createComment({
+                  await github.rest.issues.createComment({
                     owner,
                     repo,
                     issue_number: prNumber,
@@ -93,7 +93,7 @@ jobs:
                   return;
                 } catch (err) {
                   core.info(`Merge attempt failed: ${err.message}`);
-                  await github.issues.createComment({
+                  await github.rest.issues.createComment({
                     owner,
                     repo,
                     issue_number: prNumber,
@@ -107,7 +107,7 @@ jobs:
               if (combinedState === 'failure' || failingCheckRun) {
                 const reason = failingCheckRun ? `falha no check ${failingCheckRun.name}` : 'status combinado: failure';
                 core.info(`Checks failed (${reason}), aborting.`);
-                await github.issues.createComment({
+                await github.rest.issues.createComment({
                   owner,
                   repo,
                   issue_number: prNumber,
@@ -123,7 +123,7 @@ jobs:
 
             // Timeout
             core.info('Automerge timeout: checks não completaram a tempo.');
-            await github.issues.createComment({
+            await github.rest.issues.createComment({
               owner,
               repo,
               issue_number: prNumber,
