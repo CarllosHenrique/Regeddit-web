@@ -22,5 +22,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_PAT_AUTOMERGE }}   # obrigatório!
           MERGE_LABELS: "automerge"
           MERGE_METHOD: "squash"
-          MERGE_COMMIT_MESSAGE: "Merge PR #{pr} - {title}"
+          MERGE_COMMIT_MESSAGE: "Merge PR"
           UPDATE_LABELS: ""  # remove a label após merge (opcional)
