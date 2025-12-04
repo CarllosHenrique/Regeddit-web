@@ -3,8 +3,6 @@ name: Auto-merge on label
 on:
   pull_request_target:
     types: [labeled]
-    # inclui também workflow_dispatch para testes manuais, se quiser descomentar:
-    # workflow_dispatch: {}
 
 permissions:
   contents: write
@@ -26,20 +24,56 @@ jobs:
       actions: write
       packages: write
     steps:
-      - name: Configure gh (GitHub CLI)
-        uses: cli/gh-action@v2
+      - name: Auto-merge via Octokit
+        uses: actions/github-script@v6
         with:
-          token: ${{ secrets.M1_ACCESS_TOKEN }}
+          script: |
+            const pr = context.payload.pull_request;
+            if (!pr) {
+              core.info('No pull_request payload, exiting.');
+              return;
+            }
 
-      - name: Merge pull request
-        env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
-        run: |
-          set -euo pipefail
-          PR_NUMBER=$(basename "$PR_URL")
-          PR_TITLE=$(gh pr view "$PR_NUMBER" --json title -q ".title")
-          PR_BODY=$(gh pr view "$PR_NUMBER" --json body -q ".body")
-          COMMIT_MESSAGE="${PR_TITLE} (#${PR_NUMBER})"
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const prNumber = pr.number;
+            const targetBranch = 'main';
 
-          # Tentativa de merge automático -- usa --auto para respeitar branch protection (por exemplo, aguardar checks).
-          gh pr merge "$PR_URL" --auto --squash --subject "$COMMIT_MESSAGE" --body "$PR_BODY"
+            // If PR base is different, attempt to retarget the PR to 'main'
+            if (pr.base && pr.base.ref !== targetBranch) {
+              core.info(`Changing PR base from ${pr.base.ref} to ${targetBranch}`);
+              try {
+                await github.pulls.update({ owner, repo, pull_number: prNumber, base: targetBranch });
+              } catch (err) {
+                core.info(`Failed to update PR base: ${err.message}`);
+                await github.issues.createComment({
+                  owner,
+                  repo,
+                  issue_number: prNumber,
+                  body: `Automerge: falha ao alterar a base do PR para \`${targetBranch}\`: ${err.message}`
+                });
+                throw err;
+              }
+            }
+
+            // Try to merge the PR using the REST API (squash)
+            try {
+              await github.pulls.merge({ owner, repo, pull_number: prNumber, merge_method: 'squash' });
+              core.info(`Merged PR #${prNumber} into ${targetBranch}`);
+              await github.issues.createComment({
+                owner,
+                repo,
+                issue_number: prNumber,
+                body: `Automerge: PR mesclado automaticamente em \`${targetBranch}\`.`
+              });
+            } catch (error) {
+              core.info(`Merge failed: ${error.message}`);
+              await github.issues.createComment({
+                owner,
+                repo,
+                issue_number: prNumber,
+                body: `Automerge falhou: ${error.message}`
+              });
+              // Marca job como falhado para visibilidade
+              core.setFailed(error.message);
+            }
