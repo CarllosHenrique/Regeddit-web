@@ -13,8 +13,8 @@ jobs:
   automerge:
     runs-on: ubuntu-latest
     steps:
-      - name: Auto-merge when label added
-        uses: actions/github-script@v8
+      - name: Auto-merge when label added (wait for checks)
+        uses: actions/github-script@v6
         with:
           script: |
             const pr = context.payload.pull_request;
@@ -34,60 +34,98 @@ jobs:
             const repo = context.repo.repo;
             const prNumber = pr.number;
             const targetBranch = 'main';
-
-            // Trusted author check for security
-            const trustedActors = ['dependabot[bot]', 'dependabot-preview[bot]'];
-            const prAuthor = pr.user.login;
-            let isTrusted = trustedActors.includes(prAuthor);
-
-            // If not a trusted bot, check if user is a member of the org (if applicable)
-            if (!isTrusted) {
-              try {
-                const org = context.repo.owner;
-                // Try to check if user is org member. Will throw 404 if not a member.
-                await github.rest.orgs.checkMembershipForUser({ org, username: prAuthor });
-                isTrusted = true;
-                core.info(`PR author ${prAuthor} is an organization member.`);
-              } catch (err) {
-                // Not a member or org check failed (could be a personal repo or API error)
-                core.info(`PR author ${prAuthor} is not a trusted org member: ${err.status || err.message}`);
-                isTrusted = false;
-              }
-            }
-
-            if (!isTrusted) {
-              core.info(`PR author ${prAuthor} is not trusted. Skipping automerge.`);
-              await github.rest.issues.createComment({ owner, repo, issue_number: prNumber, body: `Automerge: autor do PR \`${prAuthor}\` não é confiável. Automerge cancelado.` });
-              return;
-            }
+            const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
             // If PR base is different, attempt to retarget the PR to 'main'
             if (pr.base && pr.base.ref !== targetBranch) {
               core.info(`Changing PR base from ${pr.base.ref} to ${targetBranch}`);
               try {
-                await github.rest.pulls.update({ owner, repo, pull_number: prNumber, base: targetBranch });
+                await github.pulls.update({ owner, repo, pull_number: prNumber, base: targetBranch });
               } catch (err) {
                 core.info(`Failed to update PR base: ${err.message}`);
-                await github.rest.issues.createComment({ owner, repo, issue_number: prNumber, body: `Automerge: falha ao alterar a base do PR para \`${targetBranch}\`: ${err.message}` });
+                await github.issues.createComment({
+                  owner,
+                  repo,
+                  issue_number: prNumber,
+                  body: `Automerge: falha ao alterar a base do PR para \`${targetBranch}\`: ${err.message}`
+                });
                 throw err;
               }
             }
 
-            // Try to merge the PR. Use 'squash' by default.
-            try {
-              // Check if PR is mergeable
-              const { data: prData } = await github.rest.pulls.get({ owner, repo, pull_number: prNumber });
-              if (prData.mergeable_state !== 'clean') {
-                core.info(`PR is not in a mergeable state: ${prData.mergeable_state}`);
-                await github.rest.issues.createComment({ owner, repo, issue_number: prNumber, body: `Automerge: PR não está em estado de merge. Estado atual: \`${prData.mergeable_state}\`. Aguarde os checks passarem.` });
+            // Polling: aguarda checks passarem
+            const maxMinutes = 30; // tempo máximo de espera
+            const intervalSeconds = 15; // intervalo entre tentativas
+            const maxAttempts = Math.ceil((maxMinutes * 60) / intervalSeconds);
+
+            for (let attempt = 0; attempt < maxAttempts; attempt++) {
+              // Re-fetch PR to get up-to-date head SHA and mergeable_state
+              const { data: currentPr } = await github.pulls.get({ owner, repo, pull_number: prNumber });
+              const headSha = currentPr.head.sha;
+              const mergeableState = currentPr.mergeable_state; // pode ser null inicialmente
+
+              core.info(`Attempt ${attempt + 1}/${maxAttempts}: mergeable_state=${mergeableState}`);
+
+              // Get combined status (legacy status API) and check runs (Checks API)
+              const { data: combinedStatus } = await github.repos.getCombinedStatusForRef({ owner, repo, ref: headSha });
+              const { data: checkRunsData } = await github.checks.listForRef({ owner, repo, ref: headSha });
+
+              const combinedState = combinedStatus.state; // 'success', 'failure', 'pending', 'error'
+              const checkRuns = checkRunsData.check_runs || [];
+
+              const failingCheckRun = checkRuns.find(cr => cr.conclusion === 'failure');
+              const pendingCheckRun = checkRuns.find(cr => cr.status === 'in_progress' || cr.status === 'queued');
+              const allChecksSuccessful = (combinedState === 'success') && !failingCheckRun;
+
+              core.info(`combinedState=${combinedState}, checkRuns=${checkRuns.length}, failing=${!!failingCheckRun}, pending=${!!pendingCheckRun}`);
+
+              if (allChecksSuccessful) {
+                core.info('Checks passed — attempting merge');
+                try {
+                  await github.pulls.merge({ owner, repo, pull_number: prNumber, merge_method: 'squash' });
+                  core.info(`Merged PR #${prNumber} into ${targetBranch}`);
+                  await github.issues.createComment({
+                    owner,
+                    repo,
+                    issue_number: prNumber,
+                    body: `Automerge: PR mesclado automaticamente em \`${targetBranch}\`.`
+                  });
+                  return;
+                } catch (err) {
+                  core.info(`Merge attempt failed: ${err.message}`);
+                  await github.issues.createComment({
+                    owner,
+                    repo,
+                    issue_number: prNumber,
+                    body: `Automerge: tentativa de merge falhou: ${err.message}`
+                  });
+                  throw err;
+                }
+              }
+
+              // Se houve falha definitiva dos checks, não continue
+              if (combinedState === 'failure' || failingCheckRun) {
+                const reason = failingCheckRun ? `falha no check ${failingCheckRun.name}` : 'status combinado: failure';
+                core.info(`Checks failed (${reason}), aborting.`);
+                await github.issues.createComment({
+                  owner,
+                  repo,
+                  issue_number: prNumber,
+                  body: `Automerge: não foi possível mesclar automaticamente porque os checks falharam (${reason}).`
+                });
                 return;
               }
 
-              await github.rest.pulls.merge({ owner, repo, pull_number: prNumber, merge_method: 'squash' });
-              core.info(`Merged PR #${prNumber} into ${targetBranch}`);
-              await github.rest.issues.createComment({ owner, repo, issue_number: prNumber, body: `Automerge: PR mesclado automaticamente em \`${targetBranch}\`.` });
-            } catch (error) {
-              core.info(`Merge failed: ${error.message}`);
-              await github.rest.issues.createComment({ owner, repo, issue_number: prNumber, body: `Automerge falhou: ${error.message}` });
-              throw error;
+              // Se ainda pendente, aguardar e tentar de novo
+              core.info(`Checks ainda pendentes, aguardando ${intervalSeconds}s antes da próxima tentativa...`);
+              await sleep(intervalSeconds * 1000);
             }
+
+            // Timeout
+            core.info('Automerge timeout: checks não completaram a tempo.');
+            await github.issues.createComment({
+              owner,
+              repo,
+              issue_number: prNumber,
+              body: `Automerge: timeout após ${maxMinutes} minutos aguardando os checks. Aguarde os checks passarem e o merge será tentado novamente quando você reaplicar a label ou reabrir o PR.`
+            });
