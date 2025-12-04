@@ -132,14 +132,6 @@ bin/dev
 
 O Tailwind CSS precisa ser compilado antes de usar. Isso acontece automaticamente quando você roda `bin/dev`, mas se encontrar este erro:
 
-```bash
-# Localmente
-bin/rails tailwindcss:build
-
-# No Docker
-docker-compose exec web bin/rails tailwindcss:build
-```
-
 ### Erro: "uninitialized constant Annotate"
 
 Este erro pode ocorrer se as gems de desenvolvimento não foram instaladas. O projeto já está configurado para lidar com isso gracefully, mas se persistir:
