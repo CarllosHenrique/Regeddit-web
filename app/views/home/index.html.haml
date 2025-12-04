@@ -1,2 +1,75 @@
-%h1 Home#index
-%p Find me in app/views/home/index.html.haml
+%nav.w-full.border-b.h-14.flex.items-center.justify-between.px-6.fixed.top-0.z-50{class: "bg-[#1A1A1B] border-none"}
+  .flex.items-center.gap-3.text-white.font-bold.text-xl Regeddit?
+  .flex.items-center.gap-4.text-gray-300.text-sm
+    %a.hover:text-white{href: "#"} Threads
+    %a.hover:text-white{href: "#"} Popular
+    %a.hover:text-white{href: "#"} Vídeos
+    %a.hover:text-white{href: "#"} Usuarios
+  %button.bg-blue-500.hover:bg-blue-600.text-white.px-4.rounded-full.text-sm{class: "py-1.5"} Log In
+
+%aside.fixed.left-0.h-screen.text-gray-700.z-40{class: "top-14"}
+  .flex.flex-col.items-center.flex-shrink-0.w-16.h-full.py-3{class: "bg-[#1A1A1B] border-[#2A2A2A]"}
+    %a.w-10.h-10.rounded-lg.bg-gray-400.hover:bg-gray-500{href: "#"}
+    %a.w-10.h-10.rounded-lg.bg-gray-400.mt-4.shadow-outline.border-4.border-gray-200{href: "#"}
+    %a.relative.w-10.h-10.rounded-lg.bg-gray-400.mt-4.hover:bg-gray-500{href: "#"}
+      %span.absolute.w-3.h-3.rounded-full.bg-blue-400.top-0.right-0.-mt-1.-mr-1
+    %a.w-10.h-10.rounded-lg.bg-gray-400.mt-4.hover:bg-gray-500{href: "#"}
+    %a.flex.items-center.justify-center.w-10.h-10.rounded-lg.bg-transparent.mt-4.hover:bg-gray-400{href: "#"}
+      %svg.w-6.h-6.fill-current{fill: "none", stroke: "currentColor", viewbox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg"}
+        %path{d: "M12 6v6m0 0v6m0-6h6m-6 0H6", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2"}
+
+%main.flex{class: "bg-[#0F0F0F] text-white pt-14 pl-16", style: "place-content: center;"}
+  %aside.hidden.lg:flex.flex-col.w-64.border-r.h-screen.sticky.top-0.p-4.text-sm{class: "bg-[#0F0F0F] border-[#1A1A1B]"}
+    %nav.space-y-1
+      %a.flex.items-center.gap-3.p-2.rounded{class: "hover:bg-[#1A1A1B]", href: "#"} 🏠 Threads
+      %a.flex.items-center.gap-3.p-2.rounded{class: "hover:bg-[#1A1A1B]", href: "#"} 🔥 Salvos
+      %a.flex.items-center.gap-3.p-2.rounded{class: "hover:bg-[#1A1A1B]", href: "#"} 💬 Mensagens
+      %a.flex.items-center.gap-3.p-2.rounded{class: "hover:bg-[#1A1A1B]", href: "#"} 🔍 Seguidores
+    .mt-6.border-t.pt-4.text-xs.text-gray-400{class: "border-[#1A1A1B]"}
+      %p.mb-2.font-semibold.text-gray-300 RESOURCES
+      %ul.space-y-2
+        %li About Regeddit
+        %li Advertise
+        %li Developer Platform
+        %li Regeddit Pro
+        %li Help
+  %div.flex-1.max-w-3xl.mx-auto.p-4.space-y-6{style: "margin: 0px;"}
+    %header.sticky.top-0.py-3.z-20{class: "bg-[#0F0F0F]"}
+      %input.w-full.rounded-full.px-4.py-2.text-sm.outline-none{class: "bg-[#1A1A1B]", placeholder: "Search Regeddit", type: "search"}/
+    %article.rounded-xl.overflow-hidden.border{class: "bg-[#1A1A1B] border-[#2A2A2A]"}
+      %header.flex.items-center.gap-2.px-4.pt-3.text-xs.text-gray-400
+        %span.font-semibold.text-white r/MeJulgue
+        %span • 4 days ago • Popular near you
+      %h2.px-4.mt-2.font-semibold.text-white.text-lg Sempre tive curiosidade em saber, qual foi a primeira coisa que veio na sua cabeça?
+      .mt-3
+        %img.w-full{src: "https://picsum.photos/seed/example1/900/600"}/
+      %footer.flex.items-center.justify-between.px-4.py-3.text-gray-400.text-sm
+        .flex.gap-6
+          %button 👍 700
+          %button 💬 411
+          %button 🔗 Share
+        %button.text-blue-400.font-semibold Join
+    - 100.times do
+      %article.rounded-xl.overflow-hidden.border{class: "bg-[#1A1A1B] border-[#2A2A2A]"}
+        %header.flex.items-center.gap-2.px-4.pt-3.text-xs.text-gray-400
+          %span.font-semibold.text-white r/pcmasterrace
+          %span • 16 hr ago • Popular on Regeddit
+        %h2.px-4.mt-2.font-semibold.text-white.text-lg Received Rocks In Place Of Asus Tuf 5080 From BestBuy
+        .mt-3
+          %img.w-full{src: "https://picsum.photos/seed/example2/900/600"}/
+        %footer.flex.items-center.justify-between.px-4.py-3.text-gray-400.text-sm
+          .flex.gap-6
+            %button 👍 5080
+            %button 💬 283
+            %button 🔗 Share
+          %button.text-blue-400.font-semibold Join
+  %aside.hidden.xl:block.w-80.p-4.space-y-4.sticky.top-0.h-screen
+    .p-4.rounded-xl.border{class: "bg-[#1A1A1B] border-[#2A2A2A]"}
+      %h3.font-semibold.mb-3.text-white Popular Communities
+      %ul.space-y-3.text-sm.text-gray-300
+        %li #AskRegeddit • 57,230,401 members
+        %li #leagueoflegends • 8,306,687 members
+        %li #OutOfTheLoop • 3,239,948 members
+        %li #discordapp • 1,466,716 members
+        %li #Twitch • 2,846,874 members
+

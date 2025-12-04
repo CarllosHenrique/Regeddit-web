@@ -71,6 +71,7 @@
     <orderEntry type="library" scope="PROVIDED" name="factory_bot_rails (v6.5.1, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="faker (v3.5.2, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ffi (v1.17.2, asdf: 3.4.7) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="foreman (v0.90.0, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="fugit (v1.12.1, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="globalid (v1.3.0, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="haml (v7.0.2, asdf: 3.4.7) [gem]" level="application" />
@@ -166,6 +167,7 @@
     <orderEntry type="library" scope="PROVIDED" name="unicode-emoji (v4.1.0, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="uri (v1.1.1, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="useragent (v0.16.11, asdf: 3.4.7) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="view_component (v4.1.1, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="warden (v1.2.9, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="web-console (v4.2.1, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="websocket-driver (v0.8.0, asdf: 3.4.7) [gem]" level="application" />
@@ -268,6 +270,7 @@
       <value>file://$MODULE_DIR$/public/stylesheets</value>
     </entry>
     <entry key="test/mailers/previews">
+      <value>file://$MODULE_DIR$/spec/mailers/previews</value>
       <value>file://$MODULE_DIR$/test/mailers/previews</value>
       <value>file://$MODULE_DIR$/test/mailers/previews</value>
     </entry>
