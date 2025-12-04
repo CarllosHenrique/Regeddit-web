@@ -35,6 +35,32 @@ jobs:
             const prNumber = pr.number;
             const targetBranch = 'main';
 
+            // Trusted author check for security
+            const trustedActors = ['dependabot[bot]', 'dependabot-preview[bot]'];
+            const prAuthor = pr.user.login;
+            let isTrusted = trustedActors.includes(prAuthor);
+
+            // If not a trusted bot, check if user is a member of the org (if applicable)
+            if (!isTrusted) {
+              try {
+                const org = context.repo.owner;
+                const { data: orgData } = await github.rest.orgs.get({ org });
+                if (orgData) {
+                  await github.rest.orgs.checkMembershipForUser({ org, username: prAuthor });
+                  isTrusted = true;
+                }
+              } catch (err) {
+                // Not a member or org check failed (could be a personal repo)
+                isTrusted = false;
+              }
+            }
+
+            if (!isTrusted) {
+              core.info(`PR author ${prAuthor} is not trusted. Skipping automerge.`);
+              await github.rest.issues.createComment({ owner, repo, issue_number: prNumber, body: `Automerge: autor do PR \`${prAuthor}\` não é confiável. Automerge cancelado.` });
+              return;
+            }
+
             // If PR base is different, attempt to retarget the PR to 'main'
             if (pr.base && pr.base.ref !== targetBranch) {
               core.info(`Changing PR base from ${pr.base.ref} to ${targetBranch}`);
@@ -49,6 +75,14 @@ jobs:
 
             // Try to merge the PR. Use 'squash' by default.
             try {
+              // Check if PR is mergeable
+              const { data: prData } = await github.rest.pulls.get({ owner, repo, pull_number: prNumber });
+              if (prData.mergeable_state !== 'clean') {
+                core.info(`PR is not in a mergeable state: ${prData.mergeable_state}`);
+                await github.rest.issues.createComment({ owner, repo, issue_number: prNumber, body: `Automerge: PR não está em estado de merge. Estado atual: \`${prData.mergeable_state}\`. Aguarde os checks passarem.` });
+                return;
+              }
+
               await github.rest.pulls.merge({ owner, repo, pull_number: prNumber, merge_method: 'squash' });
               core.info(`Merged PR #${prNumber} into ${targetBranch}`);
               await github.rest.issues.createComment({ owner, repo, issue_number: prNumber, body: `Automerge: PR mesclado automaticamente em \`${targetBranch}\`.` });
