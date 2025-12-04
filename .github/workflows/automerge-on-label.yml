@@ -3,136 +3,43 @@ name: Auto-merge on label
 on:
   pull_request_target:
     types: [labeled]
+    # inclui também workflow_dispatch para testes manuais, se quiser descomentar:
+    # workflow_dispatch: {}
 
 permissions:
   contents: write
   pull-requests: write
   issues: write
+  actions: write
+  packages: write
 
 jobs:
-  automerge:
+  merge:
+    if: >-
+      ${{ github.event.pull_request.draft == false &&
+         contains(github.event.pull_request.labels.*.name, 'automerge') }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      actions: write
+      packages: write
     steps:
-      - name: Auto-merge when label added (wait for checks)
-        uses: actions/github-script@v6
+      - name: Configure gh (GitHub CLI)
+        uses: cli/gh-action@v2
         with:
-          script: |
-            const pr = context.payload.pull_request;
-            if (!pr) {
-              core.info('No pull_request payload, exiting.');
-              return;
-            }
+          token: ${{ secrets.M1_ACCESS_TOKEN }}
 
-            const labels = (pr.labels || []).map(l => l.name);
-            const hasAutomerge = labels.includes('automerge') || labels.includes('automerge:main');
-            if (!hasAutomerge) {
-              core.info('No automerge label found, exiting.');
-              return;
-            }
+      - name: Merge pull request
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: |
+          set -euo pipefail
+          PR_NUMBER=$(basename "$PR_URL")
+          PR_TITLE=$(gh pr view "$PR_NUMBER" --json title -q ".title")
+          PR_BODY=$(gh pr view "$PR_NUMBER" --json body -q ".body")
+          COMMIT_MESSAGE="${PR_TITLE} (#${PR_NUMBER})"
 
-            const owner = context.repo.owner;
-            const repo = context.repo.repo;
-            const prNumber = pr.number;
-            const targetBranch = 'main';
-            const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
-            // If PR base is different, attempt to retarget the PR to 'main'
-            if (pr.base && pr.base.ref !== targetBranch) {
-              core.info(`Changing PR base from ${pr.base.ref} to ${targetBranch}`);
-              try {
-                await github.rest.pulls.update({ owner, repo, pull_number: prNumber, base: targetBranch });
-              } catch (err) {
-                core.info(`Failed to update PR base: ${err.message}`);
-                await github.rest.issues.createComment({
-                  owner,
-                  repo,
-                  issue_number: prNumber,
-                  body: `Automerge: falha ao alterar a base do PR para \`${targetBranch}\`: ${err.message}`
-                });
-                throw err;
-              }
-            }
-
-            // Polling: aguarda checks passarem
-            const maxMinutes = 30; // tempo máximo de espera (ajuste se quiser)
-            const intervalSeconds = 15; // intervalo entre tentativas
-            const maxAttempts = Math.ceil((maxMinutes * 60) / intervalSeconds);
-
-            for (let attempt = 0; attempt < maxAttempts; attempt++) {
-              // Re-fetch PR to get up-to-date head SHA and mergeable_state
-              const { data: currentPr } = await github.rest.pulls.get({ owner, repo, pull_number: prNumber });
-              const headSha = currentPr.head.sha;
-              const mergeableState = currentPr.mergeable_state; // pode ser null inicialmente
-
-              core.info(`Attempt ${attempt + 1}/${maxAttempts}: mergeable_state=${mergeableState}`);
-
-              // Get combined status (legacy) and check runs (Checks API)
-              const { data: combinedStatus } = await github.rest.repos.getCombinedStatusForRef({ owner, repo, ref: headSha });
-              const { data: checkRunsData } = await github.rest.checks.listForRef({ owner, repo, ref: headSha });
-
-              const combinedState = combinedStatus.state; // 'success', 'failure', 'pending', 'error'
-              const checkRuns = checkRunsData.check_runs || [];
-
-              // IGNORE checks cujo nome contenha 'automerge' ao decidir se há falhas
-              const failingCheckRun = checkRuns.find(cr => {
-                const name = (cr.name || '').toLowerCase();
-                const isAutomergeNamed = name.includes('automerge');
-                const isFailureConclusion = (cr.conclusion === 'failure' || cr.conclusion === 'cancelled' || cr.conclusion === 'timed_out');
-                return isFailureConclusion && !isAutomergeNamed;
-              });
-
-              const pendingCheckRun = checkRuns.find(cr => cr.status === 'in_progress' || cr.status === 'queued');
-              const allChecksSuccessful = (combinedState === 'success') && !failingCheckRun;
-
-              core.info(`combinedState=${combinedState}, checkRuns=${checkRuns.length}, failing=${!!failingCheckRun}, pending=${!!pendingCheckRun}`);
-
-              if (allChecksSuccessful) {
-                core.info('Checks passed — attempting merge');
-                try {
-                  await github.rest.pulls.merge({ owner, repo, pull_number: prNumber, merge_method: 'squash' });
-                  core.info(`Merged PR #${prNumber} into ${targetBranch}`);
-                  await github.rest.issues.createComment({
-                    owner,
-                    repo,
-                    issue_number: prNumber,
-                    body: `Automerge: PR mesclado automaticamente em \`${targetBranch}\`.`
-                  });
-                  return;
-                } catch (err) {
-                  core.info(`Merge attempt failed: ${err.message}`);
-                  await github.rest.issues.createComment({
-                    owner,
-                    repo,
-                    issue_number: prNumber,
-                    body: `Automerge: tentativa de merge falhou: ${err.message}`
-                  });
-                  throw err;
-                }
-              }
-
-              // Se houve falha definitiva dos checks (exceto os 'automerge' ignorados), não continue
-              if (combinedState === 'failure' || failingCheckRun) {
-                const reason = failingCheckRun ? `falha no check ${failingCheckRun.name}` : 'status combinado: failure';
-                core.info(`Checks failed (${reason}), aborting.`);
-                await github.rest.issues.createComment({
-                  owner,
-                  repo,
-                  issue_number: prNumber,
-                  body: `Automerge: não foi possível mesclar automaticamente porque os checks falharam (${reason}).`
-                });
-                return;
-              }
-
-              // Se ainda pendente, aguardar e tentar de novo
-              core.info(`Checks ainda pendentes, aguardando ${intervalSeconds}s antes da próxima tentativa...`);
-              await sleep(intervalSeconds * 1000);
-            }
-
-            // Timeout
-            core.info('Automerge timeout: checks não completaram a tempo.');
-            await github.rest.issues.createComment({
-              owner,
-              repo,
-              issue_number: prNumber,
-              body: `Automerge: timeout após ${maxMinutes} minutos aguardando os checks. Aguarde os checks passarem e o merge será tentado novamente quando você reaplicar a label ou reabrir o PR.`
-            });
+          # Tentativa de merge automático -- usa --auto para respeitar branch protection (por exemplo, aguardar checks).
+          gh pr merge "$PR_URL" --auto --squash --subject "$COMMIT_MESSAGE" --body "$PR_BODY"
