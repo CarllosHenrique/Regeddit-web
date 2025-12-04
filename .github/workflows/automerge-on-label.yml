@@ -1,0 +1,59 @@
+name: Auto-merge on label
+
+on:
+  pull_request_target:
+    types: [labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  automerge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Auto-merge when label added
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            if (!pr) {
+              core.info('No pull_request payload, exiting.');
+              return;
+            }
+
+            const labels = pr.labels.map(l => l.name);
+            const hasAutomerge = labels.includes('automerge') || labels.includes('automerge:main');
+            if (!hasAutomerge) {
+              core.info('No automerge label found, exiting.');
+              return;
+            }
+
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const prNumber = pr.number;
+            const targetBranch = 'main';
+
+            // If PR base is different, attempt to retarget the PR to 'main'
+            if (pr.base && pr.base.ref !== targetBranch) {
+              core.info(`Changing PR base from ${pr.base.ref} to ${targetBranch}`);
+              try {
+                await github.rest.pulls.update({ owner, repo, pull_number: prNumber, base: targetBranch });
+              } catch (err) {
+                core.info(`Failed to update PR base: ${err.message}`);
+                await github.rest.issues.createComment({ owner, repo, issue_number: prNumber, body: `Automerge: falha ao alterar a base do PR para \`${targetBranch}\`: ${err.message}` });
+                throw err;
+              }
+            }
+
+            // Try to merge the PR. Use 'squash' by default.
+            try {
+              await github.rest.pulls.merge({ owner, repo, pull_number: prNumber, merge_method: 'squash' });
+              core.info(`Merged PR #${prNumber} into ${targetBranch}`);
+              await github.rest.issues.createComment({ owner, repo, issue_number: prNumber, body: `Automerge: PR mesclado automaticamente em \`${targetBranch}\`.` });
+            } catch (error) {
+              core.info(`Merge failed: ${error.message}`);
+              await github.rest.issues.createComment({ owner, repo, issue_number: prNumber, body: `Automerge falhou: ${error.message}` });
+              throw error;
+            }
