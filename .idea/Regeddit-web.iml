@@ -69,7 +69,7 @@
     <orderEntry type="library" scope="PROVIDED" name="et-orbi (v1.4.0, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="factory_bot (v6.5.6, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="factory_bot_rails (v6.5.1, asdf: 3.4.7) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="faker (v3.5.2, asdf: 3.4.7) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="faker (v3.5.3, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ffi (v1.17.2, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="foreman (v0.90.0, asdf: 3.4.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="fugit (v1.12.1, asdf: 3.4.7) [gem]" level="application" />

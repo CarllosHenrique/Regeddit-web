@@ -47,7 +47,21 @@ RUN bundle exec bootsnap precompile -j 1 app/ lib/
 # Precompile de assets (para esbuild/tailwind funciona porque temos Node no PATH)
 RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
-# ---- Final
+# ---- Development (with build tools)
+FROM base AS development
+
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y build-essential git libyaml-dev pkg-config && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
+ENV RAILS_ENV=development \
+    BUNDLE_DEPLOYMENT=0 \
+    BUNDLE_PATH=/usr/local/bundle \
+    BUNDLE_WITHOUT=""
+
+WORKDIR /rails
+
+# ---- Final (production)
 FROM base
 RUN groupadd --system --gid 1000 rails && \
     useradd rails --uid 1000 --gid 1000 --create-home --shell /bin/bash
