@@ -19,8 +19,6 @@ jobs:
       - name: Auto-merge (pascalgn)
         uses: pascalgn/automerge-action@v0.16.4
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT_AUTOMERGE }}   # obrigatório!
+          GITHUB_TOKEN: ${{ secrets.GH_PAT_AUTOMERGE }}
           MERGE_LABELS: "automerge"
           MERGE_METHOD: "squash"
-          MERGE_COMMIT_MESSAGE: "Merge PR"
-          UPDATE_LABELS: ""  # remove a label após merge (opcional)

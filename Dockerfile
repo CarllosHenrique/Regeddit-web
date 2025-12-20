@@ -62,18 +62,4 @@ ENV RAILS_ENV=development \
 WORKDIR /rails
 
 # ---- Final (production)
-FROM base
-RUN groupadd --system --gid 1000 rails && \
-    useradd rails --uid 1000 --gid 1000 --create-home --shell /bin/bash
-USER 1000:1000
-
-COPY --chown=rails:rails --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
-COPY --chown=rails:rails --from=build /rails /rails
-
-# Entrada que prepara DB (migrations etc.)
-ENTRYPOINT ["/rails/bin/docker-entrypoint"]
-
-EXPOSE 80
-# Você pode sobrepor REDIS_URL/DB via env em runtime
-ENV REDIS_URL="redis://redis:6379/1"
 CMD ["./bin/thrust", "./bin/rails", "server"]
