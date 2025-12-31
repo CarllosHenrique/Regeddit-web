@@ -168,18 +168,54 @@ Following Tailwind CSS conventions:
 ## Testing Strategy
 
 ### Manual Testing Checklist
-- [ ] Test at 320px width
-- [ ] Test at 375px width (iPhone SE)
-- [ ] Test at 414px width (iPhone Plus)
-- [ ] Test at 768px width (iPad)
-- [ ] Test at 1024px width (desktop)
+- [x] Test at 320px width
+- [x] Test at 375px width (iPhone SE)
+- [x] Test at 414px width (iPhone Plus)
+- [x] Test at 768px width (iPad)
+- [x] Test at 1024px width (desktop)
+- [x] Test at 1440px width (large desktop)
 - [ ] Verify no horizontal scroll at any width
-- [ ] Test hamburger menu open/close
-- [ ] Test sidebar toggle on mobile
-- [ ] Verify touch targets are adequate
+- [x] Test hamburger menu open/close
+- [x] Test sidebar toggle on mobile
+- [x] Verify touch targets are adequate
 - [ ] Test keyboard navigation
-- [ ] Verify text remains readable at all sizes
-- [ ] Check image scaling and proportions
+- [x] Verify text remains readable at all sizes
+- [x] Check image scaling and proportions
+
+### Test Results & Screenshots
+
+The responsive layout has been tested across multiple breakpoints:
+
+#### Mobile - 320px
+![Mobile 320px](https://github.com/user-attachments/assets/41539e6b-c7e4-43bd-808a-7e18dc681f98)
+- ✅ Content fits without horizontal scroll
+- ✅ Hamburger menu accessible
+- ✅ Touch targets meet 44px minimum
+- ✅ Text remains readable
+
+#### Mobile - 375px (iPhone SE)
+![Mobile 375px](https://github.com/user-attachments/assets/e5bb53a0-5b1d-4966-a9e8-b27f4f52b2e1)
+- ✅ Optimal mobile layout
+- ✅ Cards stack vertically
+- ✅ All interactive elements accessible
+
+#### Tablet - 768px
+![Tablet 768px](https://github.com/user-attachments/assets/03cb8d15-56fe-4646-9b13-933c12c9fea8)
+- ✅ More spacious layout
+- ✅ Still uses hamburger menu
+- ✅ Content area expands appropriately
+
+#### Desktop - 1024px
+![Desktop 1024px](https://github.com/user-attachments/assets/1d48f820-7343-418c-b7e5-94ec7643f03d)
+- ✅ Left sidebar becomes visible
+- ✅ Navigation bar shows all links
+- ✅ Sidebar is always visible (no toggle needed)
+
+#### Large Desktop - 1440px
+![Desktop 1440px](https://github.com/user-attachments/assets/15ac3207-98de-4372-86fc-ddf99ed792d7)
+- ✅ Right sidebar (Popular Communities) appears
+- ✅ Three-column layout active
+- ✅ Optimal desktop experience
 
 ### Browser Testing
 - Chrome/Edge (Blink engine)

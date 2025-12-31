@@ -35,7 +35,13 @@ Em um mundo onde a comunicação digital é essencial, muitas plataformas são c
 - 👍 **Reações**: Like e outras interações sociais
 - 🏷️ **Comunidades**: Organize conteúdo por tópicos
 - 🔍 **Busca**: Encontre conteúdo relevante rapidamente
-- 📱 **Responsivo**: Interface adaptada para mobile e desktop
+- 📱 **Responsivo**: Interface totalmente adaptada para mobile, tablet e desktop
+  - Breakpoints: 320px, 375px, 414px, 768px, 1024px, 1440px
+  - Menu hambúrguer para navegação mobile
+  - Sidebar com overlay em dispositivos móveis
+  - Touch targets de 44px mínimo (WCAG AAA)
+  - Imagens e layouts fluidos
+  - 📚 Veja [RESPONSIVE_DESIGN.md](RESPONSIVE_DESIGN.md) para detalhes completos
 
 ---
 
