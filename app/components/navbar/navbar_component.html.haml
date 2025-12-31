@@ -1,13 +1,33 @@
-%nav.w-full.border-b.h-14.flex.items-center.justify-between.px-6.fixed.top-0.z-50{class: "bg-[#1A1A1B] border-none"}
-  .flex.items-center.gap-3.text-white.font-bold.text-xl Regeddit?
-  .flex.items-center.gap-4.text-gray-300.text-sm
+%nav.w-full.border-b.h-14.flex.items-center.justify-between.px-4.md:px-6.fixed.top-0.z-50{class: "bg-[#1A1A1B] border-none", data: { controller: "mobile-menu" }}
+  .flex.items-center.gap-2.md:gap-3
+    %button.lg:hidden.text-white.p-2.min-w-[44px].min-h-[44px].flex.items-center.justify-center{data: { action: "click->mobile-menu#toggle" }, type: "button", "aria-label": "Toggle menu"}
+      %i.fa-solid.fa-bars.text-xl
+    .text-white.font-bold.text-lg.md:text-xl Regeddit?
+  
+  / Desktop navigation (hidden on mobile)
+  .hidden.lg:flex.items-center.gap-4.text-gray-300.text-sm
     = nav_link "Threads", root_path
     = nav_link "Popular", "#"
     = nav_link "Vídeos", "#"
     = nav_link "Vídeos", "#"
-  - if user_signed_in?
-    .flex.items-center.gap-4
-      = link_to "log Out", destroy_user_session_path, data: { turbo_method: :delete },
-                                                      class: "bg-red-600 hover:bg-red-700 text-white px-4 rounded-full text-sm py-1.5"
-  - else
-    = link_to "Sign Up", new_user_registration_path, class: "bg-green-500 hover:bg-green-600 text-white px-4 rounded-full text-sm py-1.5"
+  
+  / Mobile menu (hidden by default)
+  .hidden.fixed.inset-x-0.top-14.bottom-0.z-40{class: "bg-[#1A1A1B]", data: { mobile_menu_target: "menu" }}
+    .flex.flex-col.p-4.space-y-4.text-gray-300
+      = nav_link "Threads", root_path, class: "block p-3 hover:bg-[#2A2A2A] rounded min-h-[44px] flex items-center"
+      = nav_link "Popular", "#", class: "block p-3 hover:bg-[#2A2A2A] rounded min-h-[44px] flex items-center"
+      = nav_link "Vídeos", "#", class: "block p-3 hover:bg-[#2A2A2A] rounded min-h-[44px] flex items-center"
+      = nav_link "Vídeos", "#", class: "block p-3 hover:bg-[#2A2A2A] rounded min-h-[44px] flex items-center"
+      .border-t.pt-4{class: "border-[#2A2A2A]"}
+        - if user_signed_in?
+          = link_to "log Out", destroy_user_session_path, data: { turbo_method: :delete }, class: "block bg-red-600 hover:bg-red-700 text-white px-4 py-3 rounded-full text-sm min-h-[44px] text-center"
+        - else
+          = link_to "Sign Up", new_user_registration_path, class: "block bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-full text-sm min-h-[44px] text-center"
+  
+  / Desktop auth buttons
+  .hidden.lg:block
+    - if user_signed_in?
+      .flex.items-center.gap-4
+        = link_to "log Out", destroy_user_session_path, data: { turbo_method: :delete }, class: "bg-red-600 hover:bg-red-700 text-white px-4 rounded-full text-sm py-1.5 min-h-[44px] flex items-center"
+    - else
+      = link_to "Sign Up", new_user_registration_path, class: "bg-green-500 hover:bg-green-600 text-white px-4 rounded-full text-sm py-1.5 min-h-[44px] flex items-center"

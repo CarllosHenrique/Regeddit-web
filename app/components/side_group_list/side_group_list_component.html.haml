@@ -1,10 +1,23 @@
-%aside.fixed.left-0.h-screen.text-gray-700.z-40{class: "top-14"}
-  .flex.flex-col.items-center.flex-shrink-0.w-16.h-full.py-3{class: "bg-[#1A1A1B] border-[#2A2A2A]"}
-    %a.w-10.h-10.rounded-lg.bg-gray-400.hover:bg-gray-500{href: "#"}
-    %a.w-10.h-10.rounded-lg.bg-gray-400.mt-4.shadow-outline.border-4.border-gray-200{href: "#"}
-    %a.relative.w-10.h-10.rounded-lg.bg-gray-400.mt-4.hover:bg-gray-500{href: "#"}
-      %span.absolute.w-3.h-3.rounded-full.bg-blue-400.top-0.right-0.-mt-1.-mr-1
-    %a.w-10.h-10.rounded-lg.bg-gray-400.mt-4.hover:bg-gray-500{href: "#"}
-    %a.flex.items-center.justify-center.w-10.h-10.rounded-lg.bg-transparent.mt-4.hover:bg-gray-400{href: "#"}
-      %svg.w-6.h-6.fill-current{fill: "none", stroke: "currentColor", viewbox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg"}
-        %path{d: "M12 6v6m0 0v6m0-6h6m-6 0H6", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2"}
+%div{data: { controller: "sidebar" }}
+  / Mobile sidebar toggle button (visible on mobile)
+  %button.fixed.bottom-4.left-4.z-50.lg:hidden.w-14.h-14.rounded-full.flex.items-center.justify-center.shadow-lg{class: "bg-[#1A1A1B]", data: { action: "click->sidebar#toggle" }, type: "button", "aria-label": "Toggle sidebar"}
+    %i.fa-solid.fa-bars.text-white.text-xl
+  
+  / Backdrop for mobile (hidden by default)
+  .hidden.fixed.inset-0.z-30{class: "bg-black/50", data: { sidebar_target: "backdrop", action: "click->sidebar#close" }}
+  
+  / Sidebar (fixed on mobile, static on desktop)
+  %aside.fixed.left-0.h-screen.text-gray-700.z-40.transition-transform.duration-300.transform.-translate-x-full.lg:translate-x-0{class: "top-14 bg-[#1A1A1B] border-[#2A2A2A]", data: { sidebar_target: "sidebar" }}
+    .flex.flex-col.items-center.flex-shrink-0.w-16.h-full.py-3{class: "bg-[#1A1A1B] border-[#2A2A2A]"}
+      / Close button for mobile (hidden on desktop)
+      %button.lg:hidden.w-10.h-10.rounded-lg.mb-4.flex.items-center.justify-center{class: "bg-[#2A2A2A] hover:bg-[#3A3A3A]", data: { action: "click->sidebar#close" }, type: "button", "aria-label": "Close sidebar"}
+        %i.fa-solid.fa-times.text-white
+      
+      %a.w-10.h-10.rounded-lg.bg-gray-400.hover:bg-gray-500.flex.items-center.justify-center{href: "#", "aria-label": "Group 1"}
+      %a.w-10.h-10.rounded-lg.bg-gray-400.mt-4.shadow-outline.border-4.border-gray-200.flex.items-center.justify-center{href: "#", "aria-label": "Group 2"}
+      %a.relative.w-10.h-10.rounded-lg.bg-gray-400.mt-4.hover:bg-gray-500.flex.items-center.justify-center{href: "#", "aria-label": "Group 3"}
+        %span.absolute.w-3.h-3.rounded-full.bg-blue-400.top-0.right-0.-mt-1.-mr-1
+      %a.w-10.h-10.rounded-lg.bg-gray-400.mt-4.hover:bg-gray-500.flex.items-center.justify-center{href: "#", "aria-label": "Group 4"}
+      %a.flex.items-center.justify-center.w-10.h-10.rounded-lg.bg-transparent.mt-4.hover:bg-gray-400{href: "#", "aria-label": "Add group"}
+        %svg.w-6.h-6.fill-current{fill: "none", stroke: "currentColor", viewbox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg"}
+          %path{d: "M12 6v6m0 0v6m0-6h6m-6 0H6", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2"}
