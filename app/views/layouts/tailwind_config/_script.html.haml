@@ -1,0 +1,23 @@
+%script{src: "https://cdn.tailwindcss.com"}
+%script{src: "https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"}
+:javascript
+    tailwind.config = {
+        darkMode: 'class',
+        theme: {
+            fontFamily: {
+                sans: ['Inter', 'sans-serif'],
+            },
+            extend: {
+                colors: {
+                    background: '#09090b', // Zinc 950
+                    surface: '#18181b', // Zinc 900
+                    surfaceHover: '#27272a', // Zinc 800
+                    border: '#27272a', // Zinc 800
+                    primary: '#6366f1', // Indigo 500
+                    primaryDim: 'rgba(99, 102, 241, 0.1)',
+                    textMain: '#e4e4e7', // Zinc 200
+                    textMuted: '#a1a1aa', // Zinc 400
+                }
+            }
+        }
+    }
