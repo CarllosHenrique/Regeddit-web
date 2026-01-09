@@ -1,0 +1,17 @@
+%nav.md:hidden.fixed.bottom-0.left-0.w-full.backdrop-blur-xl.border-t.border-border.z-50.h-16.flex.items-center.justify-around.px-2{class: "bg-background/90"}
+  %button.flex.flex-col.items-center.justify-center.w-full.h-full.text-white.space-y-1
+    %iconify-icon{icon: "lucide:home", width: "22"}
+    %span.font-medium{class: "text-[10px]"} Home
+  %button.flex.flex-col.items-center.justify-center.w-full.h-full.text-textMuted.hover:text-white.space-y-1
+    %iconify-icon{icon: "lucide:compass", width: "22"}
+    %span.font-medium{class: "text-[10px]"} Explore
+  %button.flex.flex-col.items-center.justify-center.w-full.h-full.text-textMuted.hover:text-white.space-y-1.-mt-5
+    .w-12.h-12.bg-primary.rounded-full.flex.items-center.justify-center.shadow-lg.text-white{class: "shadow-primary/30"}
+      %iconify-icon{icon: "lucide:plus", width: "24"}
+  %button.flex.flex-col.items-center.justify-center.w-full.h-full.text-textMuted.hover:text-white.space-y-1.relative
+    .absolute.top-3.right-5.w-2.h-2.bg-red-500.rounded-full
+    %iconify-icon{icon: "lucide:message-circle", width: "22"}
+    %span.font-medium{class: "text-[10px]"} Chat
+  %button.flex.flex-col.items-center.justify-center.w-full.h-full.text-textMuted.hover:text-white.space-y-1
+    %img.w-6.h-6.rounded-full.border{class: "border-textMuted/20", src: "https://i.pravatar.cc/100?img=12"}/
+    %span.font-medium{class: "text-[10px]"} Profile

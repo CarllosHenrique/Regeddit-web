@@ -1,98 +1,6 @@
-%nav.hidden.sm:flex.flex-col.items-center.py-4.border-r.border-border.h-full.z-20.flex-shrink-0{class: "w-[72px] bg-black/40"}
-  / Home / Direct Messages
-  .group.relative.flex.items-center.justify-center.w-12.h-12.mb-4
-    .absolute.left-0.w-1.h-8.bg-white.rounded-r-full.-translate-x-full.transition-all.duration-200.group-hover:translate-x-0.opacity-0.group-hover:opacity-100
-    %button.w-12.h-12.bg-surface.group-hover:bg-primary.transition-all.duration-200.flex.items-center.justify-center.text-white.shadow-lg.overflow-hidden{class: "rounded-[24px] group-hover:rounded-[16px]"}
-      %iconify-icon{icon: "lucide:gamepad-2", "stroke-width" => "1.5", width: "24"}
-  .w-8.bg-surfaceHover.rounded-full.mb-4{class: "h-[2px]"}
-  / Community Items
-  .space-y-3.flex.flex-col.items-center.w-full.overflow-y-auto.no-scrollbar
-    / Active Community
-    .group.relative.flex.items-center.justify-center.w-12.h-12
-      .absolute.left-0.w-1.h-10.bg-white.rounded-r-full.translate-x-0.transition-all.duration-200
-      %button.w-12.h-12.bg-primary.transition-all.duration-200.flex.items-center.justify-center.text-white.shadow-lg{class: "rounded-[16px] shadow-primary/20"}
-        %span.font-medium.text-sm.tracking-tight FE
-    / Inactive Community
-    .group.relative.flex.items-center.justify-center.w-12.h-12
-      .absolute.left-0.w-1.h-5.bg-white.rounded-r-full.-translate-x-full.transition-all.duration-200.group-hover:translate-x-0.opacity-0.group-hover:opacity-100
-      %button.w-12.h-12.bg-surface.transition-all.duration-200.flex.items-center.justify-center.text-textMuted.group-hover:text-white.border.border-border.group-hover:border-transparent{class: "rounded-[24px] group-hover:rounded-[16px] group-hover:bg-primary/80"}
-        %span.font-medium.text-sm.tracking-tight UI
-    .group.relative.flex.items-center.justify-center.w-12.h-12
-      .absolute.left-0.w-1.h-5.bg-white.rounded-r-full.-translate-x-full.transition-all.duration-200.group-hover:translate-x-0.opacity-0.group-hover:opacity-100
-      %button.w-12.h-12.bg-surface.group-hover:bg-green-600.transition-all.duration-200.flex.items-center.justify-center.text-textMuted.group-hover:text-white.border.border-border.group-hover:border-transparent{class: "rounded-[24px] group-hover:rounded-[16px]"}
-        %span.font-medium.text-sm.tracking-tight JS
-    .group.relative.flex.items-center.justify-center.w-12.h-12
-      .absolute.left-0.w-1.h-5.bg-white.rounded-r-full.-translate-x-full.transition-all.duration-200.group-hover:translate-x-0.opacity-0.group-hover:opacity-100
-      %button.w-12.h-12.bg-surface.group-hover:bg-orange-600.transition-all.duration-200.flex.items-center.justify-center.text-textMuted.group-hover:text-white.border.border-border.group-hover:border-transparent{class: "rounded-[24px] group-hover:rounded-[16px]"}
-        %span.font-medium.text-sm.tracking-tight RS
-    / Add New
-    %button.w-12.h-12.bg-transparent.hover:bg-surfaceHover.transition-all.duration-200.flex.items-center.justify-center.text-green-500.border.border-dashed.hover:border-green-500.mt-2{class: "rounded-[24px] border-green-500/30"}
-      %iconify-icon{icon: "lucide:plus", "stroke-width" => "1.5", width: "20"}
-/ INNER SIDEBAR: Channels & Nav
-%aside.hidden.md:flex.w-64.flex-col.border-r.border-border.h-full.flex-shrink-0{class: "bg-[#0c0c0e]"}
-  / Header
-  %header.h-14.px-4.flex.items-center.justify-between.border-b.border-border.cursor-pointer.transition-colors{class: "hover:bg-surface/50"}
-    %h1.font-medium.text-sm.tracking-tight.text-white.flex.items-center.gap-2
-      Frontend Engineering
-      %iconify-icon.text-textMuted{icon: "lucide:chevron-down", width: "14"}
-    %iconify-icon.text-textMuted.hover:text-white.transition-colors{icon: "lucide:bell", width: "16"}
-  / Channels List
-  .flex-1.overflow-y-auto.py-3.px-2.space-y-6
-    / Category: Discussion
-    %div
-      .px-2.mb-1.flex.items-center.justify-between.group.cursor-pointer
-        %span.font-semibold.text-textMuted.uppercase.tracking-wider.group-hover:text-textMain{class: "text-[10px]"} Discussions
-        %iconify-icon.text-textMuted.opacity-0.group-hover:opacity-100{icon: "lucide:plus", width: "12"}
-      %div{class: "space-y-[1px]"}
-        %a.flex.items-center.gap-2.px-2.rounded-md.text-white.group{class: "py-1.5 bg-surfaceHover/50", href: "#"}
-          %iconify-icon.text-textMuted.group-hover:text-white{icon: "lucide:hash", width: "16"}
-          %span.text-sm.font-medium general-dev
-        %a.flex.items-center.gap-2.px-2.rounded-md.text-textMuted.hover:text-textMain.group.transition-colors{class: "py-1.5 hover:bg-surfaceHover/30", href: "#"}
-          %iconify-icon.text-textMuted.group-hover:text-textMain{icon: "lucide:hash", width: "16"}
-          %span.text-sm.font-normal react-help
-        %a.flex.items-center.gap-2.px-2.rounded-md.text-textMuted.hover:text-textMain.group.transition-colors{class: "py-1.5 hover:bg-surfaceHover/30", href: "#"}
-          %iconify-icon.text-textMuted.group-hover:text-textMain{icon: "lucide:hash", width: "16"}
-          %span.text-sm.font-normal showcase
-          %span.ml-auto.rounded-full.bg-white{class: "w-1.5 h-1.5"}
-    / Category: Real-time
-    %div
-      .px-2.mb-1.flex.items-center.justify-between.group
-        %span.font-semibold.text-textMuted.uppercase.tracking-wider.group-hover:text-textMain{class: "text-[10px]"} Voice &amp; Live
-      %div{class: "space-y-[1px]"}
-        %a.flex.items-center.gap-2.px-2.rounded-md.text-textMuted.hover:text-textMain.group.transition-colors{class: "py-1.5 hover:bg-surfaceHover/30", href: "#"}
-          %iconify-icon.text-textMuted.group-hover:text-textMain{icon: "lucide:volume-2", width: "16"}
-          %span.text-sm.font-normal Lounge
-          .flex.-space-x-1.ml-auto
-            %img.w-4.h-4.rounded-full.border.border-background{src: "https://i.pravatar.cc/100?img=3"}/
-            %img.w-4.h-4.rounded-full.border.border-background{src: "https://i.pravatar.cc/100?img=5"}/
-        %a.flex.items-center.gap-2.px-2.rounded-md.text-textMuted.hover:text-textMain.group.transition-colors{class: "py-1.5 hover:bg-surfaceHover/30", href: "#"}
-          %iconify-icon.text-textMuted.group-hover:text-textMain{icon: "lucide:video", width: "16"}
-          %span.text-sm.font-normal Pair Programming
-    / Category: Threads
-    %div
-      .px-2.mb-1.flex.items-center.justify-between.group
-        %span.font-semibold.text-textMuted.uppercase.tracking-wider.group-hover:text-textMain{class: "text-[10px]"} Active Threads
-      %div{class: "space-y-[1px]"}
-        %a.flex.items-start.gap-2.px-2.py-2.rounded-md.text-textMuted.hover:text-textMain.group.transition-colors{class: "hover:bg-surfaceHover/30", href: "#"}
-          %iconify-icon.text-textMuted.group-hover:text-textMain{class: "mt-0.5", icon: "lucide:message-square", width: "14"}
-          .flex.flex-col
-            %span.text-xs.font-medium.truncate.w-36 State Management...
-            %span{class: "text-[10px] text-textMuted/60"} 24 new comments
-        %a.flex.items-start.gap-2.px-2.py-2.rounded-md.text-textMuted.hover:text-textMain.group.transition-colors{class: "hover:bg-surfaceHover/30", href: "#"}
-          %iconify-icon.text-textMuted.group-hover:text-textMain{class: "mt-0.5", icon: "lucide:message-square", width: "14"}
-          .flex.flex-col
-            %span.text-xs.font-medium.truncate.w-36 Tailwind v4 features
-            %span{class: "text-[10px] text-textMuted/60"} 120 upvotes
-  / User Profile (Bottom)
-  .p-3.border-t.border-border.flex.items-center.gap-3{class: "bg-[#0a0a0c]"}
-    .relative
-      %img.w-8.h-8.rounded-full.bg-surface{alt: "User", src: "https://i.pravatar.cc/100?img=12"}/
-      .absolute.bottom-0.right-0.bg-green-500.border-2.rounded-full{class: "w-2.5 h-2.5 border-[#0a0a0c]"}
-    .flex-1.min-w-0
-      .text-xs.font-medium.text-white.truncate alex_dev
-      .text-textMuted.truncate{class: "text-[10px]"} Online
-    %button.text-textMuted.hover:text-white.p-1.rounded.hover:bg-surfaceHover.transition
-      %iconify-icon{icon: "lucide:settings", width: "14"}
+= render Sidebar::Component.new
+-# = render CommunityNav::Component.new
+
 / MAIN CONTENT AREA
 %main.flex-1.flex.flex-col.min-w-0.bg-background.relative.overflow-hidden
   / Top Navigation Bar
@@ -104,9 +12,9 @@
     .flex.items-center.gap-2
       .hidden.md:flex.items-center.text-textMuted.text-sm
         %iconify-icon.mr-1{icon: "lucide:hash", width: "16"}
-        %span general-dev
+        %span Regeddit
       %span.hidden.md:block.text-border.mx-1 /
-      %h2.text-white.font-medium.text-sm.md:text-base.tracking-tight Recent Discussions
+      %a.text-white.font-medium.text-sm.md:text-base.tracking-tight.hover:underline{href: "#"} Home
     / Search & Actions
     .flex.items-center.gap-3
       .hidden.md:flex.items-center.bg-surface.border.border-border.rounded-md.px-3.w-64.focus-within:ring-1.focus-within:ring-primary.focus-within:border-primary.transition-all{class: "py-1.5"}
@@ -128,33 +36,24 @@
         %input.flex-1.bg-background.border.border-border.rounded.px-4.py-2.text-sm.text-white.focus:outline-none.focus:border-primary.transition-colors{class: "hover:border-textMuted/40", placeholder: "Start a new thread...", type: "text"}/
         %button.p-2.text-textMuted.hover:text-white.hover:bg-surfaceHover.rounded.transition
           %iconify-icon{icon: "lucide:image", width: "18"}
-        %button.p-2.text-textMuted.hover:text-white.hover:bg-surfaceHover.rounded.transition
-          %iconify-icon{icon: "lucide:link", width: "18"}
       / Filters
       .flex.items-center.gap-4.text-sm.font-medium.border-b.border-border.pb-2
         %button.flex.items-center.text-white.bg-surfaceHover.px-3.py-1.rounded-full.border{class: "gap-1.5 border-white/5"}
           %iconify-icon.text-orange-500{icon: "lucide:flame", width: "14"}
           Hot
         %button.flex.items-center.text-textMuted.hover:text-white.px-2.transition-colors{class: "gap-1.5"}
-          %iconify-icon{icon: "lucide:clock", width: "14"}
-          New
-        %button.flex.items-center.text-textMuted.hover:text-white.px-2.transition-colors{class: "gap-1.5"}
-          %iconify-icon{icon: "lucide:arrow-up-circle", width: "14"}
-          Top
+          %iconify-icon{icon: "lucide:users", width: "14"}
+          Friends
         .ml-auto.flex.items-center.gap-2
           %button.p-1.text-textMuted.hover:text-white
             %iconify-icon{icon: "lucide:layout-list", width: "16"}
-          %button.p-1.hover:text-white{class: "text-textMuted/50"}
-            %iconify-icon{icon: "lucide:layout-grid", width: "16"}
       / Pinned Post
       %article.flex.border.rounded-xl.overflow-hidden.transition-colors.cursor-pointer.group{class: "bg-surface/40 hover:bg-surface/60 border-primary/20"}
         / Voting Rail
         .w-10.flex.flex-col.items-center.py-3.gap-1.border-r{class: "bg-surface/50 border-border/50"}
           %button.text-textMuted.hover:text-primary.transition-colors
-            %iconify-icon{icon: "lucide:arrow-up", width: "20"}
+            %iconify-icon{icon: "lucide:heart", width: "20"}
           %span.text-xs.font-semibold.text-white 4.2k
-          %button.text-textMuted.hover:text-blue-500.transition-colors
-            %iconify-icon{icon: "lucide:arrow-down", width: "20"}
         / Content
         .flex-1.p-3.md:p-4
           .flex.items-center.gap-2.mb-1
@@ -178,13 +77,11 @@
               %iconify-icon{icon: "lucide:bookmark", width: "14"}
               Save
       / Standard Post: Image
-      %article.flex.bg-surface.border.border-border.rounded-xl.overflow-hidden.transition-all.cursor-pointer{class: "hover:border-textMuted/30"}
+      %article.flex.border.rounded-xl.overflow-hidden.transition-colors.cursor-pointer.group{class: "bg-surface/40 hover:bg-surface/60 border-primary/20"}
         .w-10.flex.flex-col.items-center.py-3.gap-1.border-r{class: "bg-surface/50 border-border/50"}
-          %button.text-textMuted.hover:text-orange-500.transition-colors
-            %iconify-icon{icon: "lucide:arrow-up", width: "20"}
-          %span.text-xs.font-semibold.text-white 892
-          %button.text-textMuted.hover:text-blue-500.transition-colors
-            %iconify-icon{icon: "lucide:arrow-down", width: "20"}
+          %button.text-textMuted.hover:text-primary.transition-colors
+            %iconify-icon{icon: "lucide:heart", width: "20"}
+          %span.text-xs.font-semibold.text-white 4.2k
         .flex-1.p-3.md:p-4
           .flex.items-center.gap-2.mb-2
             %img.w-5.h-5.rounded-full{src: "https://i.pravatar.cc/100?img=33"}/
@@ -206,125 +103,5 @@
             %button.flex.items-center.hover:bg-surfaceHover.px-2.py-1.rounded.transition-colors{class: "gap-1.5"}
               %iconify-icon{icon: "lucide:share", width: "14"}
               Share
-      / Standard Post: Text
-      %article.flex.bg-surface.border.border-border.rounded-xl.overflow-hidden.transition-all.cursor-pointer{class: "hover:border-textMuted/30"}
-        .w-10.flex.flex-col.items-center.py-3.gap-1.border-r{class: "bg-surface/50 border-border/50"}
-          %button.text-textMuted.hover:text-orange-500.transition-colors
-            %iconify-icon{icon: "lucide:arrow-up", width: "20"}
-          %span.text-xs.font-semibold.text-white 124
-          %button.text-textMuted.hover:text-blue-500.transition-colors
-            %iconify-icon{icon: "lucide:arrow-down", width: "20"}
-        .flex-1.p-3.md:p-4
-          .flex.items-center.gap-2.mb-1
-            %img.w-5.h-5.rounded-full{src: "https://i.pravatar.cc/100?img=8"}/
-            %span.text-xs.text-textMuted
-              Posted by
-              %span.text-white.hover:underline u/code_wizard
-              • 6h ago
-          %h3.text-lg.font-medium.text-white.tracking-tight.mb-2 Is React Server Components the future?
-          %p.text-sm.text-textMuted.leading-relaxed.mb-3.line-clamp-3
-            I've been experimenting with Next.js App Router and the paradigm shift is massive. While the initial load performance is great, the complexity it adds to state management seems...
-          / Live Chat Preview Block
-          .rounded-lg.p-2.mb-3.border{class: "bg-surfaceHover/50 border-border/50"}
-            .flex.items-center.gap-2.mb-2
-              %span.w-2.h-2.rounded-full.bg-green-500.animate-pulse
-              %span.font-bold.uppercase.tracking-wider.text-green-500{class: "text-[10px]"} Live Discussion
-              %span.text-textMuted.ml-auto{class: "text-[10px]"} 12 users typing...
-            .space-y-1
-              .text-xs.flex.gap-2
-                %span.font-bold.text-indigo-400 dev_guru:
-                %span.text-textMuted It really depends on the project size.
-              .text-xs.flex.gap-2
-                %span.font-bold.text-pink-400 sarah_js:
-                %span.text-textMuted Exactly, for dashboards it might be overkill.
-          .flex.items-center.gap-4.text-xs.font-medium.text-textMuted
-            %button.flex.items-center.text-white.bg-surfaceHover.px-2.py-1.rounded.transition-colors{class: "gap-1.5"}
-              %iconify-icon{icon: "lucide:message-circle", width: "14"}
-              Join Live Chat
-            %button.flex.items-center.hover:bg-surfaceHover.px-2.py-1.rounded.transition-colors{class: "gap-1.5"}
-              %iconify-icon{icon: "lucide:share", width: "14"}
-              Share
-/ RIGHT SIDEBAR: Trending & Activity
-%aside.hidden.xl:flex.w-80.flex-col.border-l.border-border.h-full.p-4.overflow-y-auto.no-scrollbar{class: "bg-[#0c0c0e]"}
-  / Trending Card
-  .bg-surface.border.border-border.rounded-xl.p-4.mb-4.shadow-sm
-    %h3.text-xs.font-bold.text-textMuted.uppercase.tracking-wider.mb-3 Trending Worldwide
-    .space-y-4
-      .flex.items-center.justify-between.group.cursor-pointer
-        %div
-          .text-textMuted{class: "text-[10px]"} Technology • Trending
-          .font-medium.text-sm.text-white.group-hover:text-primary.transition-colors #OpenAI
-          .text-textMuted{class: "text-[10px]"} 52k posts
-        %iconify-icon.text-textMuted.opacity-0.group-hover:opacity-100.transition-opacity{icon: "lucide:more-horizontal", width: "16"}
-      .flex.items-center.justify-between.group.cursor-pointer
-        %div
-          .text-textMuted{class: "text-[10px]"} Design • Trending
-          .font-medium.text-sm.text-white.group-hover:text-primary.transition-colors Figma Config
-          .text-textMuted{class: "text-[10px]"} 12k posts
-        %iconify-icon.text-textMuted.opacity-0.group-hover:opacity-100.transition-opacity{icon: "lucide:more-horizontal", width: "16"}
-      .flex.items-center.justify-between.group.cursor-pointer
-        %div
-          .text-textMuted{class: "text-[10px]"} Gaming • Live
-          .font-medium.text-sm.text-white.group-hover:text-primary.transition-colors GTA VI Leaks
-          .text-textMuted{class: "text-[10px]"} 124k posts
-        %iconify-icon.text-textMuted.opacity-0.group-hover:opacity-100.transition-opacity{icon: "lucide:more-horizontal", width: "16"}
-    %button.w-full.mt-4.text-xs.text-primary.transition-colors.text-left{class: "hover:text-primary/80"} Show more
-  / Community Rules
-  .bg-surface.border.border-border.rounded-xl.p-4.mb-4
-    .flex.items-center.gap-2.mb-3
-      %iconify-icon.text-white{icon: "lucide:shield-alert", width: "16"}
-      %h3.text-sm.font-medium.text-white Community Rules
-    %ol.list-decimal.list-inside.text-xs.text-textMuted.space-y-2{class: "marker:text-textMuted/50"}
-      %li Be respectful to others.
-      %li No spam or self-promotion.
-      %li Use correct flair for posts.
-      %li NSFW content must be tagged.
-  / Online Members
-  %div
-    %h3.text-xs.font-bold.text-textMuted.uppercase.tracking-wider.mb-3 Online — 1,402
-    .space-y-2
-      .flex.items-center.gap-2.rounded-lg.hover:bg-surfaceHover.transition-colors.cursor-pointer.group{class: "p-1.5"}
-        .relative
-          %img.w-8.h-8.rounded-full{src: "https://i.pravatar.cc/100?img=65"}/
-          .absolute.bottom-0.right-0.bg-green-500.border-2.rounded-full{class: "w-2.5 h-2.5 border-[#0c0c0e]"}
-        .flex-1
-          .text-xs.font-medium.text-white.group-hover:underline Admin_Dave
-          .text-textMuted{class: "text-[10px]"} Compiling shaders...
-      .flex.items-center.gap-2.rounded-lg.hover:bg-surfaceHover.transition-colors.cursor-pointer.group{class: "p-1.5"}
-        .relative
-          %img.w-8.h-8.rounded-full{src: "https://i.pravatar.cc/100?img=44"}/
-          .absolute.bottom-0.right-0.bg-green-500.border-2.rounded-full{class: "w-2.5 h-2.5 border-[#0c0c0e]"}
-        .flex-1
-          .text-xs.font-medium.text-white.group-hover:underline Sarah_Design
-          .text-textMuted{class: "text-[10px]"} In Figma
-      .flex.items-center.gap-2.rounded-lg.hover:bg-surfaceHover.transition-colors.cursor-pointer.group{class: "p-1.5"}
-        .relative
-          %img.w-8.h-8.rounded-full{src: "https://i.pravatar.cc/100?img=11"}/
-          .absolute.bottom-0.right-0.bg-yellow-500.border-2.rounded-full{class: "w-2.5 h-2.5 border-[#0c0c0e]"}
-        .flex-1
-          .text-xs.font-medium.text-white.group-hover:underline rust_fanatic
-          .text-textMuted{class: "text-[10px]"} Away
-/ MOBILE BOTTOM NAVIGATION
-%nav.md:hidden.fixed.bottom-0.left-0.w-full.backdrop-blur-xl.border-t.border-border.z-50.h-16.flex.items-center.justify-around.px-2{class: "bg-background/90"}
-  %button.flex.flex-col.items-center.justify-center.w-full.h-full.text-white.space-y-1
-    %iconify-icon{icon: "lucide:home", width: "22"}
-    %span.font-medium{class: "text-[10px]"} Home
-  %button.flex.flex-col.items-center.justify-center.w-full.h-full.text-textMuted.hover:text-white.space-y-1
-    %iconify-icon{icon: "lucide:compass", width: "22"}
-    %span.font-medium{class: "text-[10px]"} Explore
-  %button.flex.flex-col.items-center.justify-center.w-full.h-full.text-textMuted.hover:text-white.space-y-1.-mt-5
-    .w-12.h-12.bg-primary.rounded-full.flex.items-center.justify-center.shadow-lg.text-white{class: "shadow-primary/30"}
-      %iconify-icon{icon: "lucide:plus", width: "24"}
-  %button.flex.flex-col.items-center.justify-center.w-full.h-full.text-textMuted.hover:text-white.space-y-1.relative
-    .absolute.top-3.right-5.w-2.h-2.bg-red-500.rounded-full
-    %iconify-icon{icon: "lucide:message-circle", width: "22"}
-    %span.font-medium{class: "text-[10px]"} Chat
-  %button.flex.flex-col.items-center.justify-center.w-full.h-full.text-textMuted.hover:text-white.space-y-1
-    %img.w-6.h-6.rounded-full.border{class: "border-textMuted/20", src: "https://i.pravatar.cc/100?img=12"}/
-    %span.font-medium{class: "text-[10px]"} Profile
-/ Chat Overlay Button (Desktop)
-.hidden.md:flex.fixed.bottom-6.right-6.z-40
-  %button.flex.items-center.gap-2.bg-primary.hover:bg-indigo-500.text-white.px-4.py-3.rounded-full.shadow-lg.transition-all.transform.hover:scale-105{class: "shadow-primary/30"}
-    %iconify-icon{icon: "lucide:message-circle", width: "20"}
-    %span.font-medium.text-sm Global Chat
-    %span.rounded-full.text-xs.font-semibold{class: "bg-white/20 px-1.5 py-0.5"} 12
+
+= render TrendingSidebar::Component.new

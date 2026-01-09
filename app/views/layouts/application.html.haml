@@ -16,7 +16,6 @@
     = stylesheet_link_tag :app, "data-turbo-track": "reload"
     = javascript_importmap_tags
   %body.bg-background.text-textMain.font-sans.h-screen.w-full.flex.overflow-hidden.selection:text-white.antialiased{class: "selection:bg-primary/30"}
-    = render Navbar::NavbarComponent.new
-    = render SideGroupList::SideGroupListComponent.new
     = yield
+    = render MobileNav::Component.new
     = render "layouts/tailwind_config/script"

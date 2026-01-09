@@ -1,0 +1,59 @@
+%aside.hidden.xl:flex.w-80.flex-col.border-l.border-border.h-full.p-4.overflow-y-auto.no-scrollbar{class: "bg-[#0c0c0e]"}
+  / Trending Card
+  .bg-surface.border.border-border.rounded-xl.p-4.mb-4.shadow-sm
+    %h3.text-xs.font-bold.text-textMuted.uppercase.tracking-wider.mb-3 Trending Worldwide
+    .space-y-4
+      .flex.items-center.justify-between.group.cursor-pointer
+        %div
+          .text-textMuted{class: "text-[10px]"} Technology • Trending
+          .font-medium.text-sm.text-white.group-hover:text-primary.transition-colors #OpenAI
+          .text-textMuted{class: "text-[10px]"} 52k posts
+        %iconify-icon.text-textMuted.opacity-0.group-hover:opacity-100.transition-opacity{icon: "lucide:more-horizontal", width: "16"}
+      .flex.items-center.justify-between.group.cursor-pointer
+        %div
+          .text-textMuted{class: "text-[10px]"} Design • Trending
+          .font-medium.text-sm.text-white.group-hover:text-primary.transition-colors Figma Config
+          .text-textMuted{class: "text-[10px]"} 12k posts
+        %iconify-icon.text-textMuted.opacity-0.group-hover:opacity-100.transition-opacity{icon: "lucide:more-horizontal", width: "16"}
+      .flex.items-center.justify-between.group.cursor-pointer
+        %div
+          .text-textMuted{class: "text-[10px]"} Gaming • Live
+          .font-medium.text-sm.text-white.group-hover:text-primary.transition-colors GTA VI Leaks
+          .text-textMuted{class: "text-[10px]"} 124k posts
+        %iconify-icon.text-textMuted.opacity-0.group-hover:opacity-100.transition-opacity{icon: "lucide:more-horizontal", width: "16"}
+    %button.w-full.mt-4.text-xs.text-primary.transition-colors.text-left{class: "hover:text-primary/80"} Show more
+  / Community Rules
+  .bg-surface.border.border-border.rounded-xl.p-4.mb-4
+    .flex.items-center.gap-2.mb-3
+      %iconify-icon.text-white{icon: "lucide:shield-alert", width: "16"}
+      %h3.text-sm.font-medium.text-white Community Rules
+    %ol.list-decimal.list-inside.text-xs.text-textMuted.space-y-2{class: "marker:text-textMuted/50"}
+      %li Be respectful to others.
+      %li No spam or self-promotion.
+      %li Use correct flair for posts.
+      %li NSFW content must be tagged.
+  / Online Members
+  %div
+    %h3.text-xs.font-bold.text-textMuted.uppercase.tracking-wider.mb-3 Online — 1,402
+    .space-y-2
+      .flex.items-center.gap-2.rounded-lg.hover:bg-surfaceHover.transition-colors.cursor-pointer.group{class: "p-1.5"}
+        .relative
+          %img.w-8.h-8.rounded-full{src: "https://i.pravatar.cc/100?img=65"}/
+          .absolute.bottom-0.right-0.bg-green-500.border-2.rounded-full{class: "w-2.5 h-2.5 border-[#0c0c0e]"}
+        .flex-1
+          .text-xs.font-medium.text-white.group-hover:underline Admin_Dave
+          .text-textMuted{class: "text-[10px]"} Compiling shaders...
+      .flex.items-center.gap-2.rounded-lg.hover:bg-surfaceHover.transition-colors.cursor-pointer.group{class: "p-1.5"}
+        .relative
+          %img.w-8.h-8.rounded-full{src: "https://i.pravatar.cc/100?img=44"}/
+          .absolute.bottom-0.right-0.bg-green-500.border-2.rounded-full{class: "w-2.5 h-2.5 border-[#0c0c0e]"}
+        .flex-1
+          .text-xs.font-medium.text-white.group-hover:underline Sarah_Design
+          .text-textMuted{class: "text-[10px]"} In Figma
+      .flex.items-center.gap-2.rounded-lg.hover:bg-surfaceHover.transition-colors.cursor-pointer.group{class: "p-1.5"}
+        .relative
+          %img.w-8.h-8.rounded-full{src: "https://i.pravatar.cc/100?img=11"}/
+          .absolute.bottom-0.right-0.bg-yellow-500.border-2.rounded-full{class: "w-2.5 h-2.5 border-[#0c0c0e]"}
+        .flex-1
+          .text-xs.font-medium.text-white.group-hover:underline rust_fanatic
+          .text-textMuted{class: "text-[10px]"} Away

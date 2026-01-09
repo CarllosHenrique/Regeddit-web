@@ -1,0 +1,54 @@
+%aside.hidden.md:flex.w-64.flex-col.border-r.border-border.h-full.flex-shrink-0{class: "bg-[#0c0c0e]"}
+  / Header
+  %header.h-14.px-4.flex.items-center.justify-between.border-b.border-border.cursor-pointer.transition-colors{class: "hover:bg-surface/50"}
+    %h1.font-medium.text-sm.tracking-tight.text-white.flex.items-center.gap-2
+      Frontend Engineering
+      %iconify-icon.text-textMuted{icon: "lucide:chevron-down", width: "14"}
+    %iconify-icon.text-textMuted.hover:text-white.transition-colors{icon: "lucide:bell", width: "16"}
+  / Channels List
+  .flex-1.overflow-y-auto.py-3.px-2.space-y-6
+    / Category: Discussion
+    %div
+      .px-2.mb-1.flex.items-center.justify-between.group.cursor-pointer
+        %span.font-semibold.text-textMuted.uppercase.tracking-wider.group-hover:text-textMain{class: "text-[10px]"} Discussions
+        %iconify-icon.text-textMuted.opacity-0.group-hover:opacity-100{icon: "lucide:plus", width: "12"}
+      %div{class: "space-y-[1px]"}
+        %a.flex.items-center.gap-2.px-2.rounded-md.text-white.group{class: "py-1.5 bg-surfaceHover/50", href: "#"}
+          %iconify-icon.text-textMuted.group-hover:text-white{icon: "lucide:hash", width: "16"}
+          %span.text-sm.font-medium general-dev
+        %a.flex.items-center.gap-2.px-2.rounded-md.text-textMuted.hover:text-textMain.group.transition-colors{class: "py-1.5 hover:bg-surfaceHover/30", href: "#"}
+          %iconify-icon.text-textMuted.group-hover:text-textMain{icon: "lucide:hash", width: "16"}
+          %span.text-sm.font-normal react-help
+        %a.flex.items-center.gap-2.px-2.rounded-md.text-textMuted.hover:text-textMain.group.transition-colors{class: "py-1.5 hover:bg-surfaceHover/30", href: "#"}
+          %iconify-icon.text-textMuted.group-hover:text-textMain{icon: "lucide:hash", width: "16"}
+          %span.text-sm.font-normal showcase
+          %span.ml-auto.rounded-full.bg-white{class: "w-1.5 h-1.5"}
+    / Category: Real-time
+    %div
+      .px-2.mb-1.flex.items-center.justify-between.group
+        %span.font-semibold.text-textMuted.uppercase.tracking-wider.group-hover:text-textMain{class: "text-[10px]"} Voice &amp; Live
+      %div{class: "space-y-[1px]"}
+        %a.flex.items-center.gap-2.px-2.rounded-md.text-textMuted.hover:text-textMain.group.transition-colors{class: "py-1.5 hover:bg-surfaceHover/30", href: "#"}
+          %iconify-icon.text-textMuted.group-hover:text-textMain{icon: "lucide:volume-2", width: "16"}
+          %span.text-sm.font-normal Lounge
+          .flex.-space-x-1.ml-auto
+            %img.w-4.h-4.rounded-full.border.border-background{src: "https://i.pravatar.cc/100?img=3"}/
+            %img.w-4.h-4.rounded-full.border.border-background{src: "https://i.pravatar.cc/100?img=5"}/
+        %a.flex.items-center.gap-2.px-2.rounded-md.text-textMuted.hover:text-textMain.group.transition-colors{class: "py-1.5 hover:bg-surfaceHover/30", href: "#"}
+          %iconify-icon.text-textMuted.group-hover:text-textMain{icon: "lucide:video", width: "16"}
+          %span.text-sm.font-normal Pair Programming
+    / Category: Threads
+    %div
+      .px-2.mb-1.flex.items-center.justify-between.group
+        %span.font-semibold.text-textMuted.uppercase.tracking-wider.group-hover:text-textMain{class: "text-[10px]"} Active Threads
+      %div{class: "space-y-[1px]"}
+        %a.flex.items-start.gap-2.px-2.py-2.rounded-md.text-textMuted.hover:text-textMain.group.transition-colors{class: "hover:bg-surfaceHover/30", href: "#"}
+          %iconify-icon.text-textMuted.group-hover:text-textMain{class: "mt-0.5", icon: "lucide:message-square", width: "14"}
+          .flex.flex-col
+            %span.text-xs.font-medium.truncate.w-36 State Management...
+            %span{class: "text-[10px] text-textMuted/60"} 24 new comments
+        %a.flex.items-start.gap-2.px-2.py-2.rounded-md.text-textMuted.hover:text-textMain.group.transition-colors{class: "hover:bg-surfaceHover/30", href: "#"}
+          %iconify-icon.text-textMuted.group-hover:text-textMain{class: "mt-0.5", icon: "lucide:message-square", width: "14"}
+          .flex.flex-col
+            %span.text-xs.font-medium.truncate.w-36 Tailwind v4 features
+            %span{class: "text-[10px] text-textMuted/60"} 120 upvotes
