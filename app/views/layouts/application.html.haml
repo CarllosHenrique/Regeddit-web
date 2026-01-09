@@ -1,4 +1,4 @@
-%html{ :lang => "en" }
+%html{ :lang => "pt-BR" }
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title= content_for(:title) || "Regeddit Web"
@@ -9,9 +9,8 @@
     = csrf_meta_tags
     = csp_meta_tag
     = yield :head
-    %link{:href => "/icon.png", :rel => "icon", :type => "image/png"}/
-    %link{:href => "/icon.svg", :rel => "icon", :type => "image/svg+xml"}/
-    %link{:href => "/icon.png", :rel => "apple-touch-icon"}/
+    %link{:href => "#{asset_path("icon.png")}", :rel => "icon", :type => "image/png"}/
+    %link{:href => "#{asset_path("icon.png")}", :rel => "apple-touch-icon"}/
     %link{href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css", rel: "stylesheet"}
     = stylesheet_link_tag :app, "data-turbo-track": "reload"
     = javascript_importmap_tags
