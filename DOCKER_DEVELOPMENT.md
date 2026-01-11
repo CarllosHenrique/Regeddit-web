@@ -98,6 +98,12 @@ docker-compose logs -f web
 ### Executar comandos no container
 
 ```bash
+# Atalhos do projeto (recomendado)
+bin/dsh                      # abre um shell dentro do container web
+bin/dcr -v                   # versão do Rails
+bin/dcr db:migrate           # migrations
+bin/dcr console              # rails console
+
 # Rails console
 docker-compose exec web bundle exec rails console
 

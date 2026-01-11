@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Docker Compose wrapper for Rails commands inside the `web` service.
+# Usage examples:
+#   bin/dcr -v
+#   bin/dcr db:migrate
+#   bin/dcr console
+
+cd "$(dirname "$0")/.."
+
+# Use -T automatically when stdout isn't a TTY (CI, pipes).
+TTY_FLAG=""
+if [[ ! -t 1 ]]; then
+  TTY_FLAG="-T"
+fi
+
+docker compose exec ${TTY_FLAG} web bin/rails "$@"

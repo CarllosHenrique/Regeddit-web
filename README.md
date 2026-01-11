@@ -103,6 +103,8 @@ docker-compose up
 # A aplicação estará disponível em http://localhost:3000
 ```
 
+Dica: para rodar comandos Rails dentro do container, use `bin/dcr` (ex: `bin/dcr db:migrate`) ou abra um shell com `bin/dsh`.
+
 **O que o Docker Compose faz:**
 - ✅ Instala todas as dependências automaticamente
 - ✅ Configura Redis
