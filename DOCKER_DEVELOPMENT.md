@@ -53,7 +53,7 @@ O Docker Compose está configurado para:
 
 - Montar o código local como volume (hot reload)
 - Persistir gems em um volume nomeado
-- Persistir banco de dados SQLite
+- Subir PostgreSQL e persistir o banco de dados
 - Executar Foreman automaticamente ao iniciar
 
 ## Como Usar
@@ -65,6 +65,7 @@ docker-compose up
 ```
 
 Isso iniciará:
+- PostgreSQL
 - Redis
 - Rails server na porta 3000
 
@@ -123,7 +124,7 @@ bin/dev
 
 - **gem_cache**: Persiste gems instaladas
 - **node_modules**: Persiste dependências Node.js (se houver)
-- **sqlite_data**: Persiste o banco de dados SQLite
+- **postgres_data**: Persiste o banco de dados PostgreSQL
 - **redis_data**: Persiste dados do Redis
 
 ## Troubleshooting
@@ -165,7 +166,7 @@ bin/rails credentials:edit
 docker-compose down -v
 docker-compose up --build
 ```
-- **sqlite_data**: Persiste banco de dados SQLite
+- **postgres_data**: Persiste banco de dados PostgreSQL
 - **redis_data**: Persiste dados do Redis
 
 ## Troubleshooting

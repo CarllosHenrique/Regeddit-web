@@ -6,7 +6,7 @@
 
 - **Ruby**: 3.4.7
 - **Rails**: 8.1.1
-- **Database**: Sqlite
+- **Database**: PostgreSQL
 - **Cache**: Redis
 - **Container**: Docker + Dev Containers (preferred)
 - **Testing**: RSpec + FactoryBot

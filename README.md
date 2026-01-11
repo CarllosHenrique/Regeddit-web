@@ -44,7 +44,7 @@ Em um mundo onde a comunicação digital é essencial, muitas plataformas são c
 ### Backend
 - **[Ruby](https://www.ruby-lang.org/)** `3.4.7` - Linguagem de programação
 - **[Rails](https://rubyonrails.org/)** `8.1.1` - Framework web
-- **[SQLite](https://www.sqlite.org/)** - Banco de dados (desenvolvimento)
+- **[PostgreSQL](https://www.postgresql.org/)** - Banco de dados
 - **[Redis](https://redis.io/)** - Cache e gerenciamento de filas
 
 ### Frontend

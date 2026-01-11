@@ -11,9 +11,12 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.1].define(version: 2025_11_13_202516) do
-  create_table "users", force: :cascade do |t|
-    t.text "bio", default: "Hi there! I am using this app.", null: false
-    t.datetime "birthdate", null: false
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
+
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.text "bio", default: "Hi there! I am using this app."
+    t.datetime "birthdate"
     t.datetime "created_at", null: false
     t.datetime "current_sign_in_at"
     t.string "current_sign_in_ip"
@@ -22,7 +25,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_13_202516) do
     t.datetime "last_sign_in_at"
     t.string "last_sign_in_ip"
     t.string "name", default: "", null: false
-    t.string "phone", default: "", null: false
+    t.string "phone", default: ""
     t.datetime "remember_created_at"
     t.datetime "reset_password_sent_at"
     t.string "reset_password_token"

@@ -11,6 +11,11 @@ services:
       RAILS_ENV: development
       RAILS_LOG_TO_STDOUT: "true"
       REDIS_URL: redis://redis:6379/1
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USERNAME: regeddit
+      DB_PASSWORD: regeddit
+      DB_NAME: regeddit_development
     ports:
       - "3000:3000"
     volumes:
@@ -20,6 +25,8 @@ services:
     stdin_open: true
     tty: true
     depends_on:
+      db:
+        condition: service_healthy
       redis:
         condition: service_healthy
     command: >
@@ -28,6 +35,22 @@ services:
         bundle install --jobs 4 &&
         bin/dev
       "
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: regeddit
+      POSTGRES_PASSWORD: regeddit
+      POSTGRES_DB: regeddit_development
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U regeddit -d regeddit_development"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
 
   redis:
     image: redis:7.4-alpine
@@ -43,5 +66,6 @@ services:
       retries: 10
 
 volumes:
+  postgres_data:
   redis_data:
   gem_cache:
