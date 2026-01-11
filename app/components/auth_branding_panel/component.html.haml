@@ -1,0 +1,18 @@
+.hidden.lg:flex.flex-col.justify-between.relative.bg-surface.border-r.p-10.overflow-hidden{class: "border-white/5"}
+  .absolute.inset-0.opacity-20{style: "background-image: radial-gradient(#6366f1 1px, transparent 1px); background-size: 32px 32px;"}
+  .absolute.inset-0.bg-gradient-to-t.from-surface.via-transparent.to-transparent
+
+  .relative.z-10.flex.items-center.gap-2.text-white.font-medium.text-lg.tracking-tight
+    .w-8.h-8.rounded-lg.bg-primary.flex.items-center.justify-center.shadow-lg{class: "shadow-primary/25"}
+      %img.rounded-full.bg-transparent{alt: "icon", src: "#{asset_path("icon.png")}"}
+    REGEDDIT
+
+  .relative.z-10.max-w-md
+    %blockquote.space-y-4
+      %p.text-lg.font-medium.leading-relaxed.text-white
+        = "\"#{quote}\""
+      %footer.flex.items-center.gap-4.pt-4
+        %img.w-10.h-10.rounded-full.border{alt: "User", class: "border-white/10", src: avatar_url}/
+        %div
+          .text-sm.font-medium.text-white= author_name
+          .text-xs.text-textMuted= author_title

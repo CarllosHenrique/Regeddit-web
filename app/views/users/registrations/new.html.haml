@@ -1,21 +1,65 @@
-%h2 Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render "users/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Sign up"
-= render "users/shared/links"
+.w-full.h-full.lg:grid.lg:grid-cols-2
+  = render AuthBrandingPanel::Component.new
+
+  .flex.items-center.justify-center.p-8.bg-background.relative
+    .absolute.top-4.right-4.md:top-8.md:right-8
+      = link_to "Já tenho conta", new_user_session_path, class: "text-sm font-medium text-textMuted hover:text-white transition-colors"
+
+    .w-full.space-y-8.animate-fade-in{class: "max-w-[380px]"}
+      .flex.flex-col.space-y-2.text-center
+        %h1.text-2xl.font-semibold.tracking-tight.text-white Crie sua conta
+        %p.text-sm.text-textMuted
+          Comece sua jornada conosco hoje mesmo
+
+      .space-y-6
+        -# .grid.grid-cols-2.gap-3
+        -#   %button.flex.items-center.justify-center.gap-2.h-10.px-4.rounded-md.bg-surface.border.border-border.hover:bg-surfaceHover.hover:text-white.transition-all.text-sm.font-medium.text-textMain.focus:ring-2.focus:outline-none{type: "button", class: "focus:ring-primary/50"}
+        -#     %i.fa-brands.fa-github{aria: { hidden: true }}
+        -#     GitHub
+        -#   %button.flex.items-center.justify-center.gap-2.h-10.px-4.rounded-md.bg-surface.border.border-border.hover:bg-surfaceHover.hover:text-white.transition-all.text-sm.font-medium.text-textMain.focus:ring-2.focus:outline-none{type: "button", class: "focus:ring-primary/50"}
+        -#     %i.fa-brands.fa-google{aria: { hidden: true }}
+        -#     Google
+        -# .relative
+        -#   .absolute.inset-0.flex.items-center
+        -#     %span.w-full.border-t.border-border
+        -#   .relative.flex.justify-center.text-xs.uppercase
+        -#     %span.bg-background.px-2.text-textMuted Ou continue com
+
+        = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "space-y-4" }) do |f|
+          = render "users/shared/error_messages", resource: resource
+
+          .space-y-1
+            = f.label :email, "Email", class: "text-xs font-medium text-textMuted ml-1"
+            = f.email_field :email,
+              autofocus: true,
+              autocomplete: "email",
+              placeholder: "seu@email.com",
+              class: "flex h-10 w-full rounded-md border border-border px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all bg-surface/50 placeholder:text-textMuted/50 hover:bg-surfaceHover/50"
+
+          .space-y-1
+            .flex.items-baseline.justify-between
+              = f.label :password, "Senha", class: "text-xs font-medium text-textMuted ml-1"
+              - if @minimum_password_length
+                %span.text-textMuted{class: "text-[11px]"}
+                  = "#{@minimum_password_length} caracteres mínimo"
+            = f.password_field :password,
+              autocomplete: "new-password",
+              class: "flex h-10 w-full rounded-md border border-border px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all bg-surface/50 placeholder:text-textMuted/50 hover:bg-surfaceHover/50"
+
+          .space-y-1
+            = f.label :password_confirmation, "Confirmar senha", class: "text-xs font-medium text-textMuted ml-1"
+            = f.password_field :password_confirmation,
+              autocomplete: "new-password",
+              class: "flex h-10 w-full rounded-md border border-border px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all bg-surface/50 placeholder:text-textMuted/50 hover:bg-surfaceHover/50"
+
+          = f.submit "Criar conta",
+            class: "w-full h-10 bg-primary hover:bg-indigo-500 text-white text-sm font-medium rounded-md transition-all shadow-lg flex items-center justify-center gap-2 mt-2 shadow-primary/20"
+
+      %p.text-center.text-sm.text-textMuted
+        Já tem uma conta?
+        = link_to "Entrar agora", new_user_session_path, class: "font-medium text-white hover:underline underline-offset-4 hover:decoration-primary transition-all decoration-primary/50"
+
+      .flex.justify-center.gap-4.text-textMuted.pt-8.opacity-60{class: "text-[10px]"}
+        = link_to "Ajuda", "#", class: "hover:text-white"
+        = link_to "Privacidade", "#", class: "hover:text-white"
+        = link_to "Termos", "#", class: "hover:text-white"
