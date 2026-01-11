@@ -1,13 +1,10 @@
 %aside.hidden.md:flex.w-64.flex-col.border.my-3.ml-3.rounded-2xl.flex-shrink-0.overflow-hidden{class: "bg-[#0c0c0e] border-white/5 h-[calc(100vh-1.5rem)]"}
-  / Header
   %header.h-14.px-4.flex.items-center.justify-between.border-b.border-border.cursor-pointer.transition-colors{class: "hover:bg-surface/50"}
     %h1.font-medium.text-sm.tracking-tight.text-white.flex.items-center.gap-2
       Frontend Engineering
       %iconify-icon.text-textMuted{icon: "lucide:chevron-down", width: "14"}
     %iconify-icon.text-textMuted.hover:text-white.transition-colors{icon: "lucide:bell", width: "16"}
-  / Channels List
   .flex-1.overflow-y-auto.py-3.px-2.space-y-6
-    / Category: Discussion
     %div
       .px-2.mb-1.flex.items-center.justify-between.group.cursor-pointer
         %span.font-semibold.text-textMuted.uppercase.tracking-wider.group-hover:text-textMain{class: "text-[10px]"} Discussions
@@ -23,7 +20,6 @@
           %iconify-icon.text-textMuted.group-hover:text-textMain{icon: "lucide:hash", width: "16"}
           %span.text-sm.font-normal showcase
           %span.ml-auto.rounded-full.bg-white{class: "w-1.5 h-1.5"}
-    / Category: Real-time
     %div
       .px-2.mb-1.flex.items-center.justify-between.group
         %span.font-semibold.text-textMuted.uppercase.tracking-wider.group-hover:text-textMain{class: "text-[10px]"} Voice &amp; Live
@@ -37,7 +33,6 @@
         %a.flex.items-center.gap-2.px-2.rounded-md.text-textMuted.hover:text-textMain.group.transition-colors{class: "py-1.5 hover:bg-surfaceHover/30", href: "#"}
           %iconify-icon.text-textMuted.group-hover:text-textMain{icon: "lucide:video", width: "16"}
           %span.text-sm.font-normal Pair Programming
-    / Category: Threads
     %div
       .px-2.mb-1.flex.items-center.justify-between.group
         %span.font-semibold.text-textMuted.uppercase.tracking-wider.group-hover:text-textMain{class: "text-[10px]"} Active Threads

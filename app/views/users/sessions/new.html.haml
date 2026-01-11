@@ -1,17 +1,48 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "users/shared/links"
+.w-full.h-full.lg:grid.lg:grid-cols-2
+  = render AuthBrandingPanel::Component.new
+
+  .flex.items-center.justify-center.p-8.bg-background.relative
+    .absolute.top-4.right-4.md:top-8.md:right-8
+      = link_to "Criar conta", new_user_registration_path, class: "text-sm font-medium text-textMuted hover:text-white transition-colors"
+
+    .w-full.space-y-8.animate-fade-in{class: "max-w-[380px]"}
+      .flex.flex-col.space-y-2.text-center
+        %h1.text-2xl.font-semibold.tracking-tight.text-white Bem-vindo de volta
+        %p.text-sm.text-textMuted
+          Acesse sua conta para continuar
+
+      .space-y-6
+        = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-4" }) do |f|
+          .space-y-1
+            = f.label :email, "Email", class: "text-xs font-medium text-textMuted ml-1"
+            = f.email_field :email,
+              autofocus: true,
+              autocomplete: "email",
+              placeholder: "seu@email.com",
+              class: "flex h-10 w-full rounded-md border border-border px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all bg-surface/50 placeholder:text-textMuted/50 hover:bg-surfaceHover/50"
+
+          .space-y-1
+            .flex.items-center.justify-between
+              = f.label :password, "Senha", class: "text-xs font-medium text-textMuted ml-1"
+              - if devise_mapping.recoverable?
+                = link_to "Esqueceu a senha?", new_password_path(resource_name), class: "text-[11px] text-textMuted hover:text-primary transition-colors"
+            = f.password_field :password,
+              autocomplete: "current-password",
+              class: "flex h-10 w-full rounded-md border border-border px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all bg-surface/50 placeholder:text-textMuted/50 hover:bg-surfaceHover/50"
+
+          - if devise_mapping.rememberable?
+            .flex.items-center.gap-2
+              = f.check_box :remember_me, class: "h-4 w-4 rounded border-border bg-surface text-primary focus:ring-primary/50"
+              = f.label :remember_me, "Lembrar de mim", class: "text-xs text-textMuted select-none"
+
+          = f.submit "Entrar",
+            class: "w-full h-10 bg-primary hover:bg-indigo-500 text-white text-sm font-medium rounded-md transition-all shadow-lg flex items-center justify-center gap-2 mt-2 shadow-primary/20"
+
+      %p.text-center.text-sm.text-textMuted
+        Ainda não tem uma conta?
+        = link_to "Criar agora", new_user_registration_path, class: "font-medium text-white hover:underline underline-offset-4 hover:decoration-primary transition-all decoration-primary/50"
+
+      .flex.justify-center.gap-4.text-textMuted.pt-8.opacity-60{class: "text-[10px]"}
+        = link_to "Ajuda", "#", class: "hover:text-white"
+        = link_to "Privacidade", "#", class: "hover:text-white"
+        = link_to "Termos", "#", class: "hover:text-white"
