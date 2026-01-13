@@ -8,6 +8,8 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 # that will avoid rails generators crashing because migrations haven't been run yet
 # return unless Rails.env.test?
 require 'rspec/rails'
+
+require "view_component/test_helpers"
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Include Devise test helpers for controller specs
@@ -81,6 +83,8 @@ RSpec.configure do |config|
 
   # Include Devise integration helpers in request specs
   config.include Devise::Test::IntegrationHelpers, type: :request
+
+  config.include ViewComponent::TestHelpers, type: :component
 
   # Ensure Devise mapping exists for controller specs
   config.before(:each, type: :controller) do
