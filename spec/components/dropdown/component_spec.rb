@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Dropdown::Component, type: :component do
+RSpec.describe StimulusComponents::Dropdown::Component, type: :component do
   it "renders a stimulus dropdown wrapper" do
     rendered = render_inline(described_class.new(placement: :top_end)) do |c|
       c.with_trigger { "<button type='button'>User</button>".html_safe }

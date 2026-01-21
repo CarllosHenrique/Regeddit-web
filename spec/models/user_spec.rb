@@ -1,22 +1,27 @@
 require "rails_helper"
+require "securerandom"
 
 RSpec.describe User, type: :model do
   describe "#set_username" do
     it "generates username from name when blank" do
-      user = build(:user, name: "Lucas Crick", username: "")
+      name = "Lucas Crick #{SecureRandom.hex(4)}"
+      user = build(:user, name: name, username: "")
 
       user.validate
 
-      expect(user.username).to eq("lucas.crick")
+      expect(user.username).to eq(name.strip.parameterize(separator: "."))
     end
 
     it "adds a suffix when generated username already exists" do
-      create(:user, name: "Test User", username: "")
-      user = build(:user, name: "Test User", username: "")
+      name = "Test User #{SecureRandom.hex(4)}"
+      base = name.strip.parameterize(separator: ".")
+
+      create(:user, name: name, username: "")
+      user = build(:user, name: name, username: "")
 
       user.validate
 
-      expect(user.username).to eq("test.user.2")
+      expect(user.username).to eq("#{base}.2")
     end
   end
 end
