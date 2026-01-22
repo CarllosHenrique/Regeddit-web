@@ -4,19 +4,13 @@ updates:
     directory: "/"
     schedule:
       interval: daily
-    labels:
-      - automerge
 
   - package-ecosystem: npm
     directory: "/"
     schedule:
       interval: daily
-    labels:
-      - automerge
 
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: daily
-    labels:
-      - automerge
