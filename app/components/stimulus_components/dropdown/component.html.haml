@@ -1,0 +1,5 @@
+%div.relative{data: {controller: "dropdown", action: "keydown.esc@window->dropdown#close click@window->dropdown#click_outside"}}
+  %div{data: {action: "click->dropdown#toggle", dropdown_target: "trigger"}, aria: {haspopup: "menu", expanded: "false"}}
+    = trigger
+  %div{class: menu_classes, data: {dropdown_target: "menu", action: "click->dropdown#close"}, role: "menu"}
+    = menu

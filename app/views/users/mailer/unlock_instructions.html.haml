@@ -1,5 +1,16 @@
-%p
-  Hello #{@resource.email}!
-%p Your account has been locked due to an excessive number of unsuccessful sign in attempts.
-%p Click the link below to unlock your account:
-%p= link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token)
+%h1.mailer-title
+  Desbloqueio de conta
+%p.mailer-text
+  Olá #{@resource.email}!
+%p.mailer-text
+  Sua conta foi bloqueada após várias tentativas de login sem sucesso.
+%p.mailer-text
+  Clique no botão abaixo para desbloquear sua conta.
+%table.mailer-button-table{role: "presentation", cellpadding: "0", cellspacing: "0"}
+  %tr
+    %td{align: "left"}
+      = link_to "Desbloquear minha conta", unlock_url(@resource, unlock_token: @token), class: "mailer-button", target: "_blank", rel: "noopener"
+%p.mailer-muted
+  Se o botão não funcionar, copie e cole este link:
+  %br/
+  = link_to unlock_url(@resource, unlock_token: @token), unlock_url(@resource, unlock_token: @token), class: "mailer-link", target: "_blank", rel: "noopener"

@@ -8,7 +8,11 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 # that will avoid rails generators crashing because migrations haven't been run yet
 # return unless Rails.env.test?
 require 'rspec/rails'
+
+require "view_component/test_helpers"
 # Add additional requires below this line. Rails is not loaded until this point!
+
+require "factory_bot_rails"
 
 # Include Devise test helpers for controller specs
 require 'devise'
@@ -76,11 +80,18 @@ RSpec.configure do |config|
   # Include FactoryBot methods
   config.include FactoryBot::Syntax::Methods
 
+  config.before(:suite) do
+    FactoryBot.definition_file_paths = [ Rails.root.join("spec/factories").to_s ]
+    FactoryBot.find_definitions
+  end
+
   # Include Devise helpers in controller specs
   config.include Devise::Test::ControllerHelpers, type: :controller
 
   # Include Devise integration helpers in request specs
   config.include Devise::Test::IntegrationHelpers, type: :request
+
+  config.include ViewComponent::TestHelpers, type: :component
 
   # Ensure Devise mapping exists for controller specs
   config.before(:each, type: :controller) do

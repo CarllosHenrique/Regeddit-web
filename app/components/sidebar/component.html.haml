@@ -24,7 +24,13 @@
     %button.w-12.h-12.bg-transparent.hover:bg-surfaceHover.transition-all.duration-200.flex.items-center.justify-center.text-green-500.border.border-dashed.hover:border-green-500.mt-2{class: "rounded-[24px] border-green-500/30"}
       %iconify-icon{icon: "lucide:plus", "stroke-width" => "1.5", width: "20"}
   .mt-auto.mb-4.space-y-3
-    %button.w-12.h-12.bg-surfaceHover.hover:bg-primary.transition-all.duration-200.flex.items-center.justify-center.text-textMuted.hover:text-white.border.border-border.hover:border-transparent{class: "rounded-[24px]"}
-      %img.rounded-full.bg-surface{alt: "User", src: "https://i.pravatar.cc/100?img=12"}/
-    %button.w-12.h-12.bg-surfaceHover.hover:bg-primary.transition-all.duration-200.flex.items-center.justify-center.text-textMuted.hover:text-white.border.border-border.hover:border-transparent{class: "rounded-[24px]"}
-      %iconify-icon{icon: "lucide:settings", "stroke-width" => "1.5", width: "20"}
+    = render StimulusComponents::Dropdown::Component.new(placement: :top_start, menu_class: "w-52") do |c|
+      - c.with_trigger do
+        %button.w-12.h-12.bg-surfaceHover.hover:bg-primary.transition-all.duration-200.flex.items-center.justify-center.text-textMuted.hover:text-white.border.border-border.hover:border-transparent{type: "button", class: "rounded-[24px]"}
+          %img.rounded-full.bg-surface{alt: "User", src: "https://i.pravatar.cc/100?img=12"}/
+      - c.with_menu do
+        - if user_signed_in?
+          = link_to current_user&.name, "#", class: "block px-3 py-2 text-sm text-white/90 hover:bg-surfaceHover rounded-lg", role: "menuitem"
+          = link_to "Configurações", "#", class: "block px-3 py-2 text-sm text-white/90 hover:bg-surfaceHover rounded-lg", role: "menuitem"
+          .my-1.h-px{class: "bg-white/10"}
+          = link_to "Sair", destroy_user_session_path, data: { turbo_method: :delete }, class: "block px-3 py-2 text-sm text-red-300 hover:bg-surfaceHover rounded-lg", role: "menuitem"

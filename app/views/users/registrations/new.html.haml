@@ -29,6 +29,14 @@
           = render "users/shared/error_messages", resource: resource
 
           .space-y-1
+            = f.label :name, "Nome", class: "text-xs font-medium text-textMuted ml-1"
+            = f.text_field :name,
+              autofocus: true,
+              autocomplete: "name",
+              placeholder: "Seu nome",
+              class: "flex h-10 w-full rounded-md border border-border px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all bg-surface/50 placeholder:text-textMuted/50 hover:bg-surfaceHover/50"
+
+          .space-y-1
             = f.label :email, "Email", class: "text-xs font-medium text-textMuted ml-1"
             = f.email_field :email,
               autofocus: true,

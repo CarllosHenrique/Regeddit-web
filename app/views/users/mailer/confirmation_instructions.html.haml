@@ -1,4 +1,14 @@
-%p
-  Welcome #{@email}!
-%p You can confirm your account email through the link below:
-%p= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token)
+%h1.mailer-title
+  Confirme sua conta
+%p.mailer-text
+  Olá #{@email}!
+%p.mailer-text
+  Clique no botão abaixo para confirmar seu email.
+%table.mailer-button-table{role: "presentation", cellpadding: "0", cellspacing: "0"}
+  %tr
+    %td{align: "left"}
+      = link_to "Confirmar minha conta", confirmation_url(@resource, confirmation_token: @token), class: "mailer-button", target: "_blank", rel: "noopener"
+%p.mailer-muted
+  Se o botão não funcionar, copie e cole este link:
+  %br/
+  = link_to confirmation_url(@resource, confirmation_token: @token), confirmation_url(@resource, confirmation_token: @token), class: "mailer-link", target: "_blank", rel: "noopener"
