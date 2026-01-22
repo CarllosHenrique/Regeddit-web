@@ -1,19 +1,46 @@
-%h2 Change your password
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
-  = render "users/shared/error_messages", resource: resource
-  = f.hidden_field :reset_password_token
-  .field
-    = f.label :password, "New password"
-    %br/
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-      %br/
-    = f.password_field :password, autofocus: true, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation, "Confirm new password"
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Change my password"
-= render "users/shared/links"
+.w-full.h-full.lg:grid.lg:grid-cols-2
+  = render AuthBrandingPanel::Component.new
+
+  .flex.items-center.justify-center.p-8.bg-background.relative
+    .absolute.top-4.right-4.md:top-8.md:right-8
+      = link_to "Voltar ao login", new_user_session_path, class: "text-sm font-medium text-textMuted hover:text-white transition-colors"
+
+    .w-full.space-y-8.animate-fade-in{class: "max-w-[380px]"}
+      .flex.flex-col.space-y-2.text-center
+        %h1.text-2xl.font-semibold.tracking-tight.text-white Redefinir senha
+        %p.text-sm.text-textMuted
+          Escolha uma nova senha para sua conta
+
+      .space-y-6
+        = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "space-y-4" }) do |f|
+          = render "users/shared/error_messages", resource: resource
+          = f.hidden_field :reset_password_token
+
+          .space-y-1
+            .flex.items-baseline.justify-between
+              = f.label :password, "Nova senha", class: "text-xs font-medium text-textMuted ml-1"
+              - if @minimum_password_length
+                %span.text-textMuted{class: "text-[11px]"}
+                  = "#{@minimum_password_length} caracteres mínimo"
+            = f.password_field :password,
+              autofocus: true,
+              autocomplete: "new-password",
+              class: "flex h-10 w-full rounded-md border border-border px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all bg-surface/50 placeholder:text-textMuted/50 hover:bg-surfaceHover/50"
+
+          .space-y-1
+            = f.label :password_confirmation, "Confirmar nova senha", class: "text-xs font-medium text-textMuted ml-1"
+            = f.password_field :password_confirmation,
+              autocomplete: "new-password",
+              class: "flex h-10 w-full rounded-md border border-border px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all bg-surface/50 placeholder:text-textMuted/50 hover:bg-surfaceHover/50"
+
+          = f.submit "Redefinir senha",
+            class: "w-full h-10 bg-primary hover:bg-indigo-500 text-white text-sm font-medium rounded-md transition-all shadow-lg flex items-center justify-center gap-2 mt-2 shadow-primary/20"
+
+      %p.text-center.text-sm.text-textMuted
+        Lembrou da senha?
+        = link_to "Entrar agora", new_user_session_path, class: "font-medium text-white hover:underline underline-offset-4 hover:decoration-primary transition-all decoration-primary/50"
+
+      .flex.justify-center.gap-4.text-textMuted.pt-8.opacity-60{class: "text-[10px]"}
+        = link_to "Ajuda", "#", class: "hover:text-white"
+        = link_to "Privacidade", "#", class: "hover:text-white"
+        = link_to "Termos", "#", class: "hover:text-white"

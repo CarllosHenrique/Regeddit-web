@@ -1,10 +1,36 @@
-%h2 Resend unlock instructions
-= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f|
-  = render "users/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .actions
-    = f.submit "Resend unlock instructions"
-= render "users/shared/links"
+.w-full.h-full.lg:grid.lg:grid-cols-2
+  = render AuthBrandingPanel::Component.new
+
+  .flex.items-center.justify-center.p-8.bg-background.relative
+    .absolute.top-4.right-4.md:top-8.md:right-8
+      = link_to "Voltar ao login", new_user_session_path, class: "text-sm font-medium text-textMuted hover:text-white transition-colors"
+
+    .w-full.space-y-8.animate-fade-in{class: "max-w-[380px]"}
+      .flex.flex-col.space-y-2.text-center
+        %h1.text-2xl.font-semibold.tracking-tight.text-white Reenviar desbloqueio
+        %p.text-sm.text-textMuted
+          Enviaremos um link para desbloquear sua conta
+
+      .space-y-6
+        = form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post, class: "space-y-4" }) do |f|
+          = render "users/shared/error_messages", resource: resource
+
+          .space-y-1
+            = f.label :email, "Email", class: "text-xs font-medium text-textMuted ml-1"
+            = f.email_field :email,
+              autofocus: true,
+              autocomplete: "email",
+              placeholder: "seu@email.com",
+              class: "flex h-10 w-full rounded-md border border-border px-3 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all bg-surface/50 placeholder:text-textMuted/50 hover:bg-surfaceHover/50"
+
+          = f.submit "Reenviar instruções",
+            class: "w-full h-10 bg-primary hover:bg-indigo-500 text-white text-sm font-medium rounded-md transition-all shadow-lg flex items-center justify-center gap-2 mt-2 shadow-primary/20"
+
+      %p.text-center.text-sm.text-textMuted
+        Já conseguiu acessar?
+        = link_to "Entrar agora", new_user_session_path, class: "font-medium text-white hover:underline underline-offset-4 hover:decoration-primary transition-all decoration-primary/50"
+
+      .flex.justify-center.gap-4.text-textMuted.pt-8.opacity-60{class: "text-[10px]"}
+        = link_to "Ajuda", "#", class: "hover:text-white"
+        = link_to "Privacidade", "#", class: "hover:text-white"
+        = link_to "Termos", "#", class: "hover:text-white"

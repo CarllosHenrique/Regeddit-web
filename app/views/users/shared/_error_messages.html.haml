@@ -1,9 +1,7 @@
 - if resource.errors.any?
-  #error_explanation{"data-turbo-cache" => "false"}
-    %h2
-      = I18n.t("errors.messages.not_saved",                 |
-        count: resource.errors.count,                       |
-        resource: resource.class.model_name.human.downcase) |
-    %ul
+  #error_explanation{"data-turbo-cache" => "false", class: "rounded-md border border-red-500/40 bg-red-500/10 px-4 py-3"}
+    %h2.text-sm.font-medium.text-red-100
+      = I18n.t("errors.messages.not_saved", count: resource.errors.count, resource: resource.class.model_name.human.downcase)
+    %ul{class: "mt-2 space-y-1 pl-4 text-xs text-red-100/90 list-disc"}
       - resource.errors.full_messages.each do |message|
         %li= message
