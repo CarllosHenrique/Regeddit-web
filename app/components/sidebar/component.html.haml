@@ -30,7 +30,7 @@
           %img.rounded-full.bg-surface{alt: "User", src: "https://i.pravatar.cc/100?img=12"}/
       - c.with_menu do
         - if user_signed_in?
-          = link_to "Perfil", "#", class: "block px-3 py-2 text-sm text-white/90 hover:bg-surfaceHover rounded-lg", role: "menuitem"
+          = link_to current_user&.name, "#", class: "block px-3 py-2 text-sm text-white/90 hover:bg-surfaceHover rounded-lg", role: "menuitem"
           = link_to "Configurações", "#", class: "block px-3 py-2 text-sm text-white/90 hover:bg-surfaceHover rounded-lg", role: "menuitem"
           .my-1.h-px{class: "bg-white/10"}
           = link_to "Sair", destroy_user_session_path, data: { turbo_method: :delete }, class: "block px-3 py-2 text-sm text-red-300 hover:bg-surfaceHover rounded-lg", role: "menuitem"

@@ -5,7 +5,7 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { minimum: 2, maximum: 50 }
   validates :username, presence: true, uniqueness: true, length: { minimum: 3, maximum: 30 }
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validates :phone, format: { with: /\A\+?[0-9\-\s]+\z/ }
+  validates :phone, format: { with: /\A\+?[0-9\-\s]+\z/ }, allow_blank: true
   validates :bio, length: { maximum: 500 }, allow_blank: true
 
   before_validation :set_username, on: :create
