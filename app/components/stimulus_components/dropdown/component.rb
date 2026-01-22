@@ -14,7 +14,7 @@ module StimulusComponents
       attr_reader :placement, :menu_class
 
       def menu_position_classes
-        case placement.to_sym
+        case placement&.to_sym
         when :top_end
           "bottom-full mb-2 right-0 origin-bottom-right"
         when :top_start

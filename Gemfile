@@ -21,6 +21,8 @@ gem "html2haml"
 gem "devise", "~> 4.9"
 gem "foreman"
 gem "view_component"
+gem "faker"
+gem "rails-i18n", "~> 8.0.0"
 
 
 group :development, :test do
@@ -30,7 +32,6 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
   gem "rspec-rails", "~> 8.0.0"
   gem "factory_bot_rails"
-  gem "faker"
   gem "simplecov", require: false, group: :test
 end
 

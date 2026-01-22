@@ -13,22 +13,16 @@ class User < ApplicationRecord
   private
 
   def set_username
-    return if name.blank?
-    return unless username.blank?
+    return if username.present?
 
-    base = name.strip.parameterize(separator: ".")
-    base = "user" if base.blank?
+    loop do
+      self.username = Faker::Internet
+        .unique
+        .username(separators: %w[. _ -])
+        .downcase
+        .truncate(30, omission: "", length: 30)
 
-    candidate = base
-    suffix = 2
-
-    while self.class.exists?(username: candidate)
-      suffix_str = ".#{suffix}"
-      max_base_len = 30 - suffix_str.length
-      candidate = "#{base[0, max_base_len]}#{suffix_str}"
-      suffix += 1
+      return username unless User.exists?(username: username)
     end
-
-    self.username = candidate
   end
 end

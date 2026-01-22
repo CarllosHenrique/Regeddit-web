@@ -18,8 +18,10 @@ export default class extends Controller {
   }
 
   open() {
+    if (!this.hasMenuTarget) return
+
     this.menuTarget.classList.remove("hidden")
-    this.triggerTarget.setAttribute("aria-expanded", "true")
+    if (this.hasTriggerTarget) this.triggerTarget.setAttribute("aria-expanded", "true")
   }
 
   close() {
