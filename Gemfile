@@ -23,6 +23,8 @@ gem "foreman"
 gem "view_component"
 gem "faker"
 gem "rails-i18n", "~> 8.0.0"
+gem "cloudinary"
+
 
 
 group :development, :test do
