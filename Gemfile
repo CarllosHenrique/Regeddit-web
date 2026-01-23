@@ -22,7 +22,7 @@ gem "devise", "~> 4.9"
 gem "foreman"
 gem "view_component"
 gem "faker"
-gem "rails-i18n", "~> 8.0.0"
+gem "rails-i18n", "~> 8.1.0"
 gem "cloudinary"
 
 
