@@ -1,0 +1,4 @@
+- if image_src
+  = image_tag image_src, alt: I18n.t("components.user_avatar.alt", name: display_name), class: classes
+- else
+  %iconify-icon{class: "#{classes} text-textMuted", icon: "lucide:user", "stroke-width" => "1.5", width: icon_size}

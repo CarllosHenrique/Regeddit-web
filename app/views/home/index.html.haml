@@ -10,32 +10,32 @@
         %iconify-icon.mr-1{icon: "lucide:hash", width: "16"}
         %span Regeddit
       %span.hidden.md:block.text-border.mx-1 /
-      %a.text-white.font-medium.text-sm.md:text-base.tracking-tight.hover:underline{href: "#"} Home
+      %a.text-white.font-medium.text-sm.md:text-base.tracking-tight.hover:underline{href: "#"}= t("home.header.home")
     .flex.items-center.gap-3
       .hidden.md:flex.items-center.bg-surface.border.border-border.rounded-md.px-3.w-64.focus-within:ring-1.focus-within:ring-primary.focus-within:border-primary.transition-all{class: "py-1.5"}
         %iconify-icon.text-textMuted.mr-2{icon: "lucide:search", width: "14"}
-        %input.bg-transparent.border-none.outline-none.text-xs.w-full.text-white.placeholder-textMuted{placeholder: "Search discussions...", type: "text"}/
+        %input.bg-transparent.border-none.outline-none.text-xs.w-full.text-white.placeholder-textMuted{placeholder: t("home.search.placeholder"), type: "text"}/
       .flex.items-center.border-l.border-border.pl-3.gap-2
         %button.p-2.text-textMuted.hover:text-white.hover:bg-surfaceHover.rounded-md.transition-colors.relative
           %iconify-icon{icon: "lucide:inbox", width: "18"}
           %span.absolute.w-2.h-2.bg-primary.rounded-full.border.border-background{class: "top-1.5 right-1.5"}
         %button.hidden.lg:flex.px-3.bg-white.text-black.rounded-md.text-xs.font-medium.hover:bg-gray-200.transition-colors.items-center.gap-2{class: "py-1.5"}
           %iconify-icon{icon: "lucide:plus", width: "14"}
-          New Post
+          = t("home.actions.new_post")
   #main-scroll.flex-1.overflow-y-auto.relative.scroll-smooth.pb-20.md:pb-0
     .max-w-4xl.mx-auto.w-full.p-4.md:p-6.space-y-6
       .flex.items-center.gap-3.p-3.bg-surface.border.border-border.rounded-lg.mb-6
-        %img.w-8.h-8.rounded-full{src: "https://i.pravatar.cc/100?img=12"}/
-        %input.flex-1.bg-background.border.border-border.rounded.px-4.py-2.text-sm.text-white.focus:outline-none.focus:border-primary.transition-colors{class: "hover:border-textMuted/40", placeholder: "Start a new thread...", type: "text"}/
+        = render UserAvatar::Component.new(user: current_user, size: :small)
+        %input.flex-1.bg-background.border.border-border.rounded.px-4.py-2.text-sm.text-white.focus:outline-none.focus:border-primary.transition-colors{class: "hover:border-textMuted/40", placeholder: t("home.actions.start_thread_placeholder"), type: "text"}/
         %button.p-2.text-textMuted.hover:text-white.hover:bg-surfaceHover.rounded.transition
           %iconify-icon{icon: "lucide:image", width: "18"}
       .flex.items-center.gap-4.text-sm.font-medium.border-b.border-border.pb-2
         %button.flex.items-center.text-white.bg-surfaceHover.px-3.py-1.rounded-full.border{class: "gap-1.5 border-white/5"}
           %iconify-icon.text-orange-500{icon: "lucide:flame", width: "14"}
-          Hot
+          = t("home.filters.hot")
         %button.flex.items-center.text-textMuted.hover:text-white.px-2.transition-colors{class: "gap-1.5"}
           %iconify-icon{icon: "lucide:users", width: "14"}
-          Friends
+          = t("home.filters.friends")
         .ml-auto.flex.items-center.gap-2
           %button.p-1.text-textMuted.hover:text-white
             %iconify-icon{icon: "lucide:layout-list", width: "16"}
@@ -46,9 +46,9 @@
           %span.text-xs.font-semibold.text-white 4.2k
         .flex-1.p-3.md:p-4
           .flex.items-center.gap-2.mb-1
-            %span.text-green-400.font-medium.rounded.border{class: "bg-green-500/10 text-[10px] px-1.5 py-0.5 border-green-500/20"} Announcement
+            %span.text-green-400.font-medium.rounded.border{class: "bg-green-500/10 text-[10px] px-1.5 py-0.5 border-green-500/20"}= t("home.post.labels.announcement")
             %span.text-xs.text-textMuted
-              Posted by
+              = t("home.post.labels.posted_by")
               %span.text-white.hover:underline u/moderator
               • 2h ago
             %iconify-icon.text-green-400.fill-current{icon: "lucide:pin", width: "12"}
@@ -57,13 +57,13 @@
           .flex.items-center.gap-4.text-xs.font-medium.text-textMuted
             %button.flex.items-center.hover:bg-surfaceHover.px-2.py-1.rounded.transition-colors{class: "gap-1.5"}
               %iconify-icon{icon: "lucide:message-square", width: "14"}
-              342 Comments
+              = "342 #{t("home.post.actions.comments")}"
             %button.flex.items-center.hover:bg-surfaceHover.px-2.py-1.rounded.transition-colors{class: "gap-1.5"}
               %iconify-icon{icon: "lucide:share", width: "14"}
-              Share
+              = t("home.post.actions.share")
             %button.flex.items-center.hover:bg-surfaceHover.px-2.py-1.rounded.transition-colors{class: "gap-1.5"}
               %iconify-icon{icon: "lucide:bookmark", width: "14"}
-              Save
+              = t("home.post.actions.save")
       %article.flex.border.rounded-xl.overflow-hidden.transition-colors.cursor-pointer.group{class: "bg-surface/40 hover:bg-surface/60 border-primary/20"}
         .w-10.flex.flex-col.items-center.py-3.gap-1.border-r{class: "bg-surface/50 border-border/50"}
           %button.text-textMuted.hover:text-primary.transition-colors
@@ -73,7 +73,7 @@
           .flex.items-center.gap-2.mb-2
             %img.w-5.h-5.rounded-full{src: "https://i.pravatar.cc/100?img=33"}/
             %span.text-xs.text-textMuted
-              Posted by
+              = t("home.post.labels.posted_by")
               %span.text-white.hover:underline u/design_guru
               • 4h ago
             %span.text-primary.border.rounded{class: "text-[10px] bg-primary/10 border-primary/20 px-1.5"} Showcase
@@ -86,9 +86,9 @@
           .flex.items-center.gap-4.text-xs.font-medium.text-textMuted
             %button.flex.items-center.hover:bg-surfaceHover.px-2.py-1.rounded.transition-colors{class: "gap-1.5"}
               %iconify-icon{icon: "lucide:message-square", width: "14"}
-              56 Comments
+              = "56 #{t("home.post.actions.comments")}"
             %button.flex.items-center.hover:bg-surfaceHover.px-2.py-1.rounded.transition-colors{class: "gap-1.5"}
               %iconify-icon{icon: "lucide:share", width: "14"}
-              Share
+              = t("home.post.actions.share")
 
 = render TrendingSidebar::Component.new

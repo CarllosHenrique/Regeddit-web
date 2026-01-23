@@ -229,3 +229,35 @@ pt-BR:
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
     pm: pm
+  components:
+    user_avatar:
+      alt: "Avatar de %{name}"
+      default_name: "perfil"
+  mobile_nav:
+    home: "Início"
+    explore: "Explorar"
+    chat: "Chat"
+    profile: "Perfil"
+  home:
+    header:
+      home: "Início"
+    search:
+      placeholder: "Buscar discussões..."
+    actions:
+      new_post: "Nova publicação"
+      start_thread_placeholder: "Comece um novo tópico..."
+    filters:
+      hot: "Em alta"
+      friends: "Amigos"
+    post:
+      labels:
+        announcement: "Anúncio"
+        posted_by: "Postado por"
+      actions:
+        comments: "Comentários"
+        share: "Compartilhar"
+        save: "Salvar"
+  sidebar:
+    menu:
+      settings: "Configurações"
+      logout: "Sair"

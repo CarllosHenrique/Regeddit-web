@@ -1,2 +1,34 @@
 en:
   hello: "Hello world"
+  components:
+    user_avatar:
+      alt: "Avatar of %{name}"
+      default_name: "user"
+  mobile_nav:
+    home: "Home"
+    explore: "Explore"
+    chat: "Chat"
+    profile: "Profile"
+  home:
+    header:
+      home: "Home"
+    search:
+      placeholder: "Search discussions..."
+    actions:
+      new_post: "New Post"
+      start_thread_placeholder: "Start a new thread..."
+    filters:
+      hot: "Hot"
+      friends: "Friends"
+    post:
+      labels:
+        announcement: "Announcement"
+        posted_by: "Posted by"
+      actions:
+        comments: "Comments"
+        share: "Share"
+        save: "Save"
+  sidebar:
+    menu:
+      settings: "Settings"
+      logout: "Logout"
