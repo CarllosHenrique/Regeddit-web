@@ -7,6 +7,7 @@ RSpec.describe Sidebar::Component, type: :component do
 
   before do
     allow(component).to receive(:user_signed_in?).and_return(false)
+    allow(component).to receive(:current_user).and_return(nil)
   end
 
   it "renders the sidebar navigation" do
