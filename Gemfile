@@ -18,7 +18,7 @@ gem "thruster", require: false
 gem "image_processing", "~> 1.2"
 gem "haml-rails"
 gem "html2haml"
-gem "devise", "~> 4.9"
+gem "devise", "~> 5.0"
 gem "foreman"
 gem "view_component"
 gem "faker"
