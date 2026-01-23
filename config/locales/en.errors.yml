@@ -1,0 +1,5 @@
+en:
+  errors:
+    messages:
+      invalid: "is invalid"
+      invalid_phone: "is not a valid phone number"
